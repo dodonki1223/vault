@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vault Git Commit"
+  short_description: "vault の変更を安全に commit"
+  default_prompt: "$vault-git-commit を使って vault の変更を確認し、焦点の合った git commit を作成してください。"
