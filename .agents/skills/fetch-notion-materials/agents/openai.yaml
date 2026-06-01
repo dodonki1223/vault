@@ -1,0 +1,4 @@
+interface:
+  display_name: "Notion 材料取得"
+  short_description: "Project 更新向けに Notion 材料を取得"
+  default_prompt: "$fetch-notion-materials を使って、Project 更新に必要な Notion 材料を取得してください。"
