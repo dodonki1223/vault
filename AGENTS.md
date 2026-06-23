@@ -11,6 +11,8 @@ Project の構成、`status.md` の標準フォーマット、新規作成時の
 
 notes の置き場、git 管理方針、`shared/` と `local/` の使い分けは `notes/README.md` に従う。
 
+agent 共通の skill / workflow / command は `.agents/` を正とする。Codex 用の `.codex/skills` は `.agents/skills` への symlink なので直接編集しない。Claude Code など別エージェント向けの入口が必要な場合も、コピーではなく `.agents/` への symlink または薄い wrapper にする。詳しくは `.agents/README.md` に従う。
+
 ## 共通作業ルール
 
 - 新しい構造を増やすより、既存の置き場と README のルールを優先する。
