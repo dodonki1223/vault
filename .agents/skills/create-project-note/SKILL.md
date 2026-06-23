@@ -13,6 +13,8 @@ description: vault の `projects/active/` に新しい Project note を作る。
 
 作業前に `projects/README.md` を読み、最新の Project 構成、git 管理方針、更新ルールに従う。
 
+作成後に不足している情報を返せるよう、`.agents/references/project-required-info.md` の確認項目を見る。
+
 Project 名は、ローカルで扱いやすく読み返しやすい短い kebab-case にする。
 
 ## インタビュー
@@ -50,7 +52,30 @@ status.md
 - `templates/instructions.md`: 作業指示テンプレート。
 - `templates/status.md`: 現在地テンプレート。これを `status.md` の標準フォーマットとする。
 
-テンプレート内の `Project 名`、`YYYY-MM-DD`、空の箇条書きは、インタビューで分かった範囲だけ埋める。分からない項目を無理に埋めず、未確定の問いは `status.md` の `未解決事項` に置く。
+テンプレート内の `Project 名`、`YYYY-MM-DD`、空の箇条書きは、インタビューで分かった範囲だけ埋める。分からない項目を無理に埋めず、未確定の問いは `status.md` の `未解決事項` または `instructions.md` に置く。
+
+## 不足情報の扱い
+
+作成後に `.agents/references/project-required-info.md` の確認項目を見直す。不足があっても作成を止めないが、推測で埋めない。
+
+不足している項目は、作成結果の `不足している情報` に必ず出す。次に確認すべき問いがある場合は `次に確認したいこと` として 1〜3 個に絞って返す。
+
+返答には次の形を含める。
+
+```markdown
+## 作成結果
+
+- Project:
+- 作成したファイル:
+
+## 不足している情報
+
+-
+
+## 次に確認したいこと
+
+-
+```
 
 ## 情報源の扱い
 
@@ -83,4 +108,4 @@ status.md
 - この skill では外部情報源を読みに行かない。
 - この skill では `status.md` 更新後レビューを行わない。
 - Project 本体は local-only なので、作成した Project ファイルを commit 対象にしない。
-- 作成結果には、作成した path、未解決事項、次に情報取得すべき情報源だけを短く返す。
+- 作成結果には、作成した path、不足している情報、次に確認したいこと、次に情報取得すべき情報源だけを短く返す。

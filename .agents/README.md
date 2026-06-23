@@ -20,3 +20,8 @@ Codex、Claude Code など複数のエージェントで共通利用する skill
 - スラッシュコマンド的な入口は `.agents/commands/` に置く。
 - Codex や Claude Code 側で専用の command / prompt wrapper が必要な場合も、workflow 本体は `.agents/workflows/` を参照する。
 - workflow は手順、skill は単一責任の部品として分ける。
+
+## References
+
+- 複数の skill / workflow から参照する共通チェックリストや基準は `.agents/references/` に置く。
+- reference は実行手順ではなく、判断基準や共通フォーマットを置く場所にする。
