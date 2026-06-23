@@ -25,6 +25,7 @@ commit 前には `git status --short` と staged files を確認し、`notes/loc
 
 ## 置くもの
 
+- 新しい note を増やすより、既存 note の更新を優先する。
 - 1 回限りの調査メモ、未分類のアイデア、相談から出た判断メモ。
 - 複数 Project にまたがる軽い観察や、後で Project 化するかもしれない種。
 - まだ Project にするほどではないが、失うと困る文脈。
