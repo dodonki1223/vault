@@ -1,4 +1,4 @@
 interface:
-  display_name: "GitHub 材料取得"
-  short_description: "Project 更新向けに GitHub 材料を取得"
-  default_prompt: "$fetch-github-materials を使って、Project 更新に必要な GitHub 材料を取得してください。"
+  display_name: "GitHub からの情報取得"
+  short_description: "Project 更新向けに GitHub 情報を取得"
+  default_prompt: "$fetch-github-materials を使って、Project 更新に必要な GitHub 情報を取得してください。"

@@ -1,13 +1,13 @@
 ---
 name: fetch-slack-materials
-description: Project 更新、リリース追跡、不具合対応、面接メモ、chief-of-staff 的な作業記憶更新のために、Slack から必要な材料だけを取得する。指定された channel、DM、thread、期間、キーワード、Project instructions をもとに、関連する Slack メッセージ、スレッド、メンション、依頼、決定事項、ブロッカー、リンクを集めたいときに使う。取得した材料の分類や notes への統合はまだ行わない。
+description: Project 更新、リリース追跡、不具合対応、面接メモ、chief-of-staff 的な作業記憶更新のために、Slack から必要な情報だけを取得する。指定された channel、DM、thread、期間、キーワード、Project instructions をもとに、関連する Slack メッセージ、スレッド、メンション、依頼、決定事項、ブロッカー、リンクを集めたいときに使う。取得した情報の分類や notes への統合はまだ行わない。
 ---
 
-# Slack 材料取得
+# Slack からの情報取得
 
 ## 目的
 
-後続の Project 更新に必要な Slack 材料だけを集める。この skill は材料の取得と軽い絞り込みだけを担当し、Project の優先度判断、事実・推測などへの分類、project note の編集は行わない。
+後続の Project 更新に必要な Slack 情報だけを集める。この skill は情報の取得と軽い絞り込みだけを担当し、Project の優先度判断、事実・推測などへの分類、project note の編集は行わない。
 
 ## 事前に確認する入力
 
@@ -47,48 +47,48 @@ Slack tools が見つからない、Slack tool が認証エラーを返す、ま
 
 ## 返答フォーマット
 
-別 skill またはメインの Codex が分類できるように、コンパクトな source materials として返す。
+別 skill またはメインの Codex が分類できるように、コンパクトな取得情報として返す。
 
 ```markdown
-## Slack Materials
+## Slack 情報
 
-### Scope
+### 取得範囲
 
-- Targets:
-- Time window:
-- Viewpoint:
-- Exclusions:
+- 対象:
+- 期間:
+- 観点:
+- 除外:
 
-### Materials
+### 取得結果
 
-| Time | Source | Actor | Material | Link | Why included |
+| 時刻 | 情報源 | 発言者 | 情報 | リンク | 取得理由 |
 |---|---|---|---|---|---|
 | YYYY-MM-DD HH:mm JST | #channel / DM / thread | Name | source に基づく短い要約または短い引用 | [display](url) | 取り込んだ理由 |
 
-### Possible Gaps
+### 不足している可能性
 
 - 
 ```
 
-`Material` は短く保つ。長い引用より、source に忠実な要約を優先する。可能な限り直接リンクを残す。URL だけで置かず、意味が分かる表示名を付ける。
+`情報` は短く保つ。長い引用より、source に忠実な要約を優先する。可能な限り直接リンクを残す。URL だけで置かず、意味が分かる表示名を付ける。
 
 ## 境界
 
 - この skill では `status.md`、`notes/`、Project ファイルを更新しない。
-- 材料を最終的な `事実`、`推測`、`重要リンク`、`未解決事項`、`ユーザー対応待ち` へ分類しない。それは `classify-project-materials` に任せる。
+- 取得した情報を最終的な `事実`、`推測`、`重要リンク`、`未解決事項`、`ユーザー対応待ち` へ分類しない。それは `classify-project-materials` に任せる。
 - Slack ログ全文を貼らない。
 - Slack connector の認証切れを検知した場合は、追加取得や推測による補完をしない。
 - 呼び出し側が人間向け summary を求めていない限り、定型更新をユーザーへ通知しない。
 - Linear、GitHub、Docs の方が正本になりそうな場合、Slack を正本扱いしない。Slack の文脈を取得し、後続確認のために外部 source へのリンクを残す。
 
-## 良い材料の例
+## 良い情報の例
 
 - リリース thread での決定事項。決定した人と時刻が分かるもの。
 - ユーザーまたはユーザーのチームへの直接依頼。
 - ブロッカー、担当変更、期限変更、QA 結果、レビュー依頼、デプロイに関する情報。
 - Project の中心になりそうな Linear、GitHub、Notion、Docs、Sheets、リリースチェックリストへのリンク。
 
-## 悪い材料の例
+## 悪い情報の例
 
 - 新しい判断がない定型 status ping。
 - メッセージ全文の貼り付け。
