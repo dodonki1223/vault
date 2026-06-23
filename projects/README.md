@@ -86,7 +86,7 @@ projects/
 
 `未解決事項` は、まだ判断・確認が必要な問いだけにする。すでに決まった仕様、完了したタスク、期限切れの確認事項は残さない。
 
-`次に見ること` は、次回 Codex が確認する観測ポイントだけを書く。調査ログやチケット一覧のコピーにしない。
+`次に見ること` は、次回エージェントが確認する観測ポイントだけを書く。調査ログやチケット一覧のコピーにしない。
 
 ## 更新ルール
 
@@ -108,7 +108,7 @@ Project を閉じるときは、`status.md` に完了日、閉じた理由、残
 
 ## 新しい Project を作るとき
 
-新しい Project を作る前に、Codex は短いインタビューを行う。1 問ずつ聞き、Project の輪郭と観測ポイントを確認してから `projects/active/<project-name>/` を作る。最初から完璧に埋めようとせず、継続更新に必要な最小情報だけを集める。
+新しい Project を作る前に、エージェントは短いインタビューを行う。1 問ずつ聞き、Project の輪郭と観測ポイントを確認してから `projects/active/<project-name>/` を作る。最初から完璧に埋めようとせず、継続更新に必要な最小情報だけを集める。
 
 確認すること:
 
@@ -127,14 +127,14 @@ Project を閉じるときは、`status.md` に完了日、閉じた理由、残
 
 新しい Project を作るとき、または既存 Project の状況を広く確認するときは、必要に応じて情報源ごとに read-only のサブエージェントを使う。サブエージェントは原則としてファイルを編集しない。各情報源から、事実、推測、重要リンク、未解決事項だけを短く返す。
 
-情報収集 skill を作る場合は、取得と整理を分けて単一責任にする。取得 skill は、Slack / Linear / Notion / GitHub など情報源ごとに分け、指定された対象 channel / issue / doc / 期間 / 観点から必要な情報だけを集める。整理 skill は、取得済みの情報を入力として受け取り、事実、推測、重要リンク、未解決事項、ユーザー対応待ちに分類する。Project 固有の優先度判断や `status.md` への統合は、取得 skill / 整理 skill ではなくメインの Codex が行う。
+情報収集 skill を作る場合は、取得と整理を分けて単一責任にする。取得 skill は、Slack / Linear / Notion / GitHub など情報源ごとに分け、指定された対象 channel / issue / doc / 期間 / 観点から必要な情報だけを集める。整理 skill は、取得済みの情報を入力として受け取り、事実、推測、重要リンク、未解決事項、ユーザー対応待ちに分類する。Project 固有の優先度判断や `status.md` への統合は、取得 skill / 整理 skill ではなくメインのエージェントが行う。
 
 - Linear: issue、status、owner、blocker、未完了タスク、最近の更新を確認する。
 - Notion / Docs: 仕様、背景、決定事項、scope、除外事項、古くなっていそうな情報を確認する。
 - Slack: 最近の議論、ユーザー宛てメンション、DM、pending ask、暗黙の決定、リスク、見逃すと困る thread を確認する。
 - GitHub: PR、review request、issue、CI、release に関わる変更を確認する。
 
-メインの Codex は、サブエージェントの結果をそのまま貼らない。複数の情報源を統合し、durable context、decisions、blockers、owners、follow-ups だけを `projects/` または `notes/` に反映する。情報源ごとの結果が矛盾する場合は、事実と推測を分け、未解決事項として残す。
+メインのエージェントは、サブエージェントの結果をそのまま貼らない。複数の情報源を統合し、durable context、decisions、blockers、owners、follow-ups だけを `projects/` または `notes/` に反映する。情報源ごとの結果が矛盾する場合は、事実と推測を分け、未解決事項として残す。
 
 ## 置かないもの
 
