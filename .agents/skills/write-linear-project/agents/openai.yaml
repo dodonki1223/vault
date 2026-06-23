@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear Project 書き込み"
+  short_description: "Linear Project を確認後に作成・更新"
+  default_prompt: "$write-linear-project を使って、Linear Project の作成または更新を行ってください。"

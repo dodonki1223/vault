@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear issue 書き込み"
+  short_description: "Linear issue を確認後に作成・更新"
+  default_prompt: "$write-linear-issue を使って、Linear issue の作成または更新を行ってください。"

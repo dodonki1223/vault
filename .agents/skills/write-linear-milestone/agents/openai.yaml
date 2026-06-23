@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear milestone 書き込み"
+  short_description: "Linear milestone を確認後に作成・更新"
+  default_prompt: "$write-linear-milestone を使って、Linear Project milestone の作成または更新を行ってください。"
