@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project status レビュー"
+  short_description: "status.md 更新後の品質を確認"
+  default_prompt: "$review-project-status を使って、Project の status.md をレビューしてください。"
