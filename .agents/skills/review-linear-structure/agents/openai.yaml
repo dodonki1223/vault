@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear 構造レビュー"
+  short_description: "Linear の Project・milestone・issue をレビュー"
+  default_prompt: "$review-linear-structure を使って、Linear の Project / milestone / issue が Linear Method の原則に沿っているか確認してください。"
