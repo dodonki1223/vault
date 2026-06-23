@@ -1,4 +1,4 @@
 interface:
   display_name: "Linear からの情報取得"
-  short_description: "Project 更新向けに Linear 情報を取得"
-  default_prompt: "$fetch-linear-materials を使って、Project 更新に必要な Linear 情報を取得してください。"
+  short_description: "指定された Linear 対象から情報を取得"
+  default_prompt: "$fetch-linear-materials を使って、指定された Linear 対象から必要な情報を取得してください。"

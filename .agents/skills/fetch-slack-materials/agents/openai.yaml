@@ -1,4 +1,4 @@
 interface:
   display_name: "Slack からの情報取得"
-  short_description: "Project 更新向けに Slack 情報を取得"
-  default_prompt: "$fetch-slack-materials を使って、Project 更新に必要な Slack 情報を取得してください。"
+  short_description: "指定された Slack 対象から情報を取得"
+  default_prompt: "$fetch-slack-materials を使って、指定された Slack 対象から必要な情報を取得してください。"
