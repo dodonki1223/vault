@@ -57,6 +57,26 @@ fetch 系 skill の返答が、後続の分類 skill に渡しやすい粒度に
 - 取得結果、分類、`status.md` 更新、レビューの流れが重すぎないか。
 - `review-project-status` の指摘が実際に整理に役立つか。
 
+### Project の不足情報を可視化する仕組み
+
+Project 作成時のヒアリングが十分にできなかった場合でも、不足した情報が確認されないまま進まないようにする。
+
+改善案:
+
+- `create-project-note` で、初期作成時に確認できなかった項目を `status.md` の `未解決事項` または `instructions.md` に残す。
+- `project-update` workflow で、更新前に Project の不足情報を確認し、ユーザーに分かる形で返す。
+- `review-project-status` で、重要な情報源、完了条件、通知条件、対象範囲などが欠けている場合に確認事項として出す。
+
+不足として見たいもの:
+
+- 目的と成功条件。
+- ユーザーの責任範囲。
+- 重要な情報源。
+- 対象範囲と除外範囲。
+- 通知してほしい条件。
+- 通知しなくてよい条件。
+- 完了条件または閉じる条件。
+
 ### 定期確認の設計
 
 Project の定期確認を行う場合の最小ルールを決める。
@@ -69,23 +89,11 @@ Project の定期確認を行う場合の最小ルールを決める。
 - 変化がない場合に何も通知しない運用をどう明記するか。
 - heartbeat / automation を使う場合、workflow とどう接続するか。
 
-### command wrapper の設計
-
-Codex や Claude Code から Project 更新 workflow を呼びやすくする入口を検討する。
-
-候補:
-
-- `.agents/commands/project-update.md` を作る。
-- Codex 側では必要に応じて `~/.codex/prompts/` に薄い wrapper を置く。
-- Claude Code 側でも同じ workflow を参照する薄い wrapper にする。
-
-workflow 本体は `.agents/workflows/project-update.md` を正とし、command 側に手順を重複させない。
-
 ## 次にやる候補
 
 1. `classify-project-materials` skill を作る。
-2. Project 更新 workflow を実際の Project で 1 回使い、重い部分を確認する。
-3. `.agents/commands/project-update.md` を作り、slash command 的な入口を試す。
+2. Project の不足情報を可視化する項目を `create-project-note` / `project-update` / `review-project-status` のどこに入れるか決める。
+3. Project 更新 workflow を実際の Project で 1 回使い、重い部分を確認する。
 
 ## 判断メモ
 
