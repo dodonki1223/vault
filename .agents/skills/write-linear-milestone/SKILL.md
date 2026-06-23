@@ -25,13 +25,14 @@ Linear Project milestone の作成・更新だけを担当する。個別 issue 
 - 操作: create / update / reorder / date change など。
 - 対象: Linear Project URL / Project name と milestone name。新規作成なら Project と name。
 - 変更内容: name、description、target date、status、order、関連 issue。
+- 依存関係: 前提になる milestone、後続 milestone への影響、target date の制約。
 - 理由: なぜこの変更が必要か。
 
 対象、変更内容、理由のどれかが曖昧な場合は、実行前に短く確認する。
 
 ## Linear Method の参照
 
-Milestone の作成・更新前に、必要に応じて `.agents/references/linear-method-principles.md` の `Milestone の原則` と `レビュー観点` を読む。
+Milestone の作成・更新前に、必要に応じて `.agents/references/linear-method-principles.md` の `Milestone の原則` と `レビュー観点` を読む。前後関係がある milestone では、依存関係、後続への影響、target date の矛盾も確認する。依存関係が複数ある場合は、Mermaid などで並列に進められる milestone と順番が必要な milestone を図式化することを検討する。
 
 ## Milestone description テンプレート
 
@@ -57,6 +58,16 @@ Milestone の作成・更新前に、必要に応じて `.agents/references/line
 ## 対象外
 
 -
+
+## 依存関係
+
+-
+
+```mermaid
+flowchart LR
+  A[前提 milestone] --> C[後続 milestone]
+  B[並列 milestone] --> C
+```
 
 ## 重要リンク
 

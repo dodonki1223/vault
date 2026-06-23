@@ -31,7 +31,7 @@ Linear Project の作成・更新だけを担当する。Project に紐づく個
 
 ## Linear Method の参照
 
-Project の作成・更新前に、必要に応じて `.agents/references/linear-method-principles.md` の `Project の原則` と `レビュー観点` を読む。
+Project の作成・更新前に、必要に応じて `.agents/references/linear-method-principles.md` の `Project の原則` と `レビュー観点` を読む。milestone が複数ある場合は、Project description で全体の流れ、並列に進められる範囲、依存関係が分かるか確認する。
 
 ## Project description テンプレート
 
@@ -61,6 +61,12 @@ Project の作成・更新前に、必要に応じて `.agents/references/linear
 ## マイルストーン
 
 -
+
+```mermaid
+flowchart LR
+  A[最初の milestone] --> C[後続 milestone]
+  B[並列 milestone] --> C
+```
 
 ## 重要リンク
 
