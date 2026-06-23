@@ -115,6 +115,13 @@ projects/
 
 `notes/` は inbox ではなく、失うと困るが継続プロジェクトにするには早い文脈を置く場所。次回も使うことが明らかなものは `projects/` に置く。使うか分からないものは `notes/` に短く置き、使わないものは書かない。
 
+`notes/` は git 管理するものとローカル専用のものを分ける。
+
+- `notes/shared/`: git commit で管理してよい note。vault の運用ルール、workflow、skill 設計など、個人情報・候補者情報・顧客情報・社内限定リンクを含まない、抽象化された改善メモを置く。
+- `notes/local/`: git commit に残したくない note。面接、候補者、個人情報、社内 URL、社内運用、顧客・会社固有情報、まだ commit してよいか判断できない文脈を置く。`README.md` 以外は `.gitignore` で無視する。
+- 迷う場合は `notes/local/` に置き、commit してよい粒度に抽象化できたら `notes/shared/` に移す。
+- commit 前には `git status --short` と staged files を確認し、`notes/local/` 配下のファイルが含まれていないことを確認する。
+
 - 1 回限りの調査メモ、未分類のアイデア、相談から出た判断メモを置く。
 - 複数プロジェクトにまたがる軽い観察や、後で project 化するかもしれない種を置く。
 - 日々の進捗、リリース判断に関わる状態、担当者やブロッカーがあるものは `projects/` に置く。

@@ -1,1 +1,6 @@
 /projects/
+
+# Local-only notes. Keep sensitive, private, or not-for-commit material here.
+notes/local/*
+!notes/local/
+!notes/local/README.md
