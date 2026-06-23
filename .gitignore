@@ -1,4 +1,13 @@
-/projects/
+# Local-only project notes. Keep actual project contents out of git.
+projects/*
+!projects/
+!projects/README.md
+!projects/active/
+projects/active/*
+!projects/active/README.md
+!projects/archive/
+projects/archive/*
+!projects/archive/README.md
 
 # Local-only notes. Keep sensitive, private, or not-for-commit material here.
 notes/local/*
