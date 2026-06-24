@@ -8,23 +8,9 @@
 
 ## 未対応
 
-### 取得情報を分類する skill
-
-候補名: `classify-project-materials`
-
-fetch 系 skill が返した取得結果を入力として受け取り、次の形に分類する。
-
-- 事実
-- 推測
-- 重要リンク
-- 未解決事項
-- ユーザー対応待ち
-
-この skill は外部情報を取得しない。Project 固有の優先度判断や `status.md` への統合も行わない。
-
 ### fetch 系 skill の出力形式の実地確認
 
-fetch 系 skill の返答が、後続の分類 skill に渡しやすい粒度になっているかを実際の Project 更新で確認する。
+fetch 系 skill の返答が、`classify-fetched-materials` に渡しやすい粒度になっているかを実際の Project 更新で確認する。
 
 見ること:
 
@@ -85,9 +71,8 @@ heartbeat / automation を設計する段階では、次の通知ポリシーも
 
 ## 次にやる候補
 
-1. `classify-project-materials` skill を作る。
-2. Linear 書き込み skill を安全な対象で実地確認する。
-3. Project 更新 workflow を実際の Project で 1 回使い、重い部分を確認する。
+1. Linear 書き込み skill を安全な対象で実地確認する。
+2. Project 更新 workflow を実際の Project で 1 回使い、重い部分を確認する。
 
 ## 判断メモ
 

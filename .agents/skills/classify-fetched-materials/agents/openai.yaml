@@ -1,0 +1,4 @@
+interface:
+  display_name: "取得情報の分類"
+  short_description: "取得済み情報を事実・決定事項などに分類"
+  default_prompt: "$classify-fetched-materials を使って、取得済み情報を分類してください。"
