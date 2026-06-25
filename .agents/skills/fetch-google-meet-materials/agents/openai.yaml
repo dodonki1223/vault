@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Meet メモ取得"
+  short_description: "Google Meet のメモや文字起こしを取得"
+  default_prompt: "$fetch-google-meet-materials を使って、指定された Google Meet のメモや文字起こしから必要な情報を取得してください。"
