@@ -1,10 +1,15 @@
+---
+name: workflow-update-linear-project-timeline
+description: Linear Project に紐づく issue、milestone、document、MTG メモ、Slack thread、Notion / Docs、GitHub PR から、後から参画する人向けの時系列 document を作成・更新する workflow skill。Project description には時系列を書かない。
+---
+
 # Linear Project 時系列 document 作成・更新 workflow
 
 ## 目的
 
 Linear Project に紐づく issue、milestone、document、MTG メモ、Slack thread、Notion / Docs、GitHub PR などをもとに、後から参画する人が Project の経緯と現在地を把握できる時系列 document を作成・更新する。
 
-この workflow は進行役であり、情報取得、分類、Linear への書き込みの細部は skill や connector に委譲する。
+この skill は進行役であり、情報取得、分類、Linear への書き込みの細部は capability skill や connector に委譲する。
 
 ## 前提
 
@@ -101,7 +106,7 @@ Linear Project に紐づく issue、milestone、document、MTG メモ、Slack th
 
 9. Linear Project document として作成・更新する。
    - Linear connector / MCP の document 作成・更新機能を使う。
-   - document 書き込み専用 skill がまだない場合は、この workflow 内で実行する。
+   - document 書き込み専用 skill がまだない場合は、この skill 内で実行する。
    - document 作成・更新が繰り返し発生する場合は、`write-linear-document` skill への切り出しを検討する。
 
 10. 結果を返す。
@@ -184,7 +189,7 @@ Linear Project に紐づく issue、milestone、document、MTG メモ、Slack th
 ## 境界
 
 - Project description に時系列を追記しない。
-- Linear issue、milestone、Project description の作成・更新はこの workflow では行わない。
+- Linear issue、milestone、Project description の作成・更新はこの skill では行わない。
 - ログ全文、議事録全文、コメント全文、チケット一覧を document に貼らない。
 - Linear への書き込み前に必ず draft とユーザー確認を挟む。
 - 書き込み後の構造レビューが必要な場合は、別途 `review-linear-structure` を使う。

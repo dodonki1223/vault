@@ -73,50 +73,10 @@ skill が `.agents/skills/` に flat に増えてきており、fetch 系、writ
 
 確認したいこと:
 
-- `SKILL.md` の frontmatter にカテゴリを持たせるか。
+- `SKILL.md` の frontmatter にカテゴリを持たせるか。これは別途検討し、今は行わない。
 - index を手動管理するか、script で生成するか。
-- workflow から skill を探すときに、カテゴリ別 index があると十分か。
+- workflow skill から capability skill を探すときに、カテゴリ別 index があると十分か。
 - `.agents/README.md` に「flat layout だがカテゴリ index で探す」と明記するか。
-
-### workflow を skill に寄せる
-
-Codex / Claude Code の両方で起動しやすくするため、`.agents/workflows/` に置いている実行用 workflow を skill に寄せる。
-
-背景:
-
-- Codex では reusable workflow の authoring format は skill として扱われる。
-- Claude Code でも custom command は skill に統合されており、slash command 的な入口は skill として表現するのが自然。
-- `.agents/workflows/*.md` は agent から見ると discoverable な能力ではなく、ただの Markdown になりやすい。
-
-方針:
-
-- ユーザーが明示的に起動したい repeatable workflow は `.agents/skills/<name>/SKILL.md` に移す。
-- `.agents/workflows/` は廃止するか、skill 化前の設計メモに限定する。
-- workflow skill は、fetch / classify / write / review などの通常 skill を組み合わせる進行役にする。
-- workflow skill 自体に、外部サービス取得や書き込みの細かい手順を持たせすぎない。
-- read-only / write の境界は、呼び出す通常 skill 側の責務に合わせる。
-
-通常 skill と workflow skill の見分け方:
-
-- `metadata.kind: capability` を通常 skill に付ける。
-- `metadata.kind: workflow` を workflow skill に付ける。
-- `metadata.category` は `fetch`、`classify`、`write`、`review`、`project`、`linear` などの領域を示す。
-- `.agents/skills/README.md` で `Workflow skills` と `Capability skills` を分けて一覧する。
-- workflow skill の名前は動詞から始める。例: `update-project-note`、`update-linear-project-timeline`、`write-and-review-linear`
-- 通常 skill は責務が分かる名前にする。例: `fetch-linear-materials`、`classify-fetched-materials`、`review-project-status`
-
-移行候補:
-
-- `.agents/workflows/project-update.md` -> `.agents/skills/update-project-note/SKILL.md`
-- `.agents/workflows/linear-write-and-review.md` -> `.agents/skills/write-and-review-linear/SKILL.md`
-- `.agents/workflows/linear-project-timeline-document.md` -> `.agents/skills/update-linear-project-timeline/SKILL.md`
-
-移行後にやること:
-
-- `.agents/workflows/` を削除するか、残す場合は README に「実行用ではない設計メモ」と明記する。
-- `.agents/README.md` の Workflows / Commands セクションを更新する。
-- `.agents/skills/README.md` に workflow skill と通常 skill の一覧を作る。
-- 既存 workflow に書かれていた手順が、skill の `description` と本文から起動しやすい形になっているか確認する。
 
 ### Linear 書き込み skill の実地確認
 
@@ -186,7 +146,7 @@ Linear Method との扱い:
 - sub issue は現時点では共通原則に含めず、個人の作業分解や実装 checklist に近い補助的なものとして扱う。
 - Linear Method は、issue として切る粒度が妥当かを見る reference として使う。
 - 細かくしすぎて管理コストが上がらないように、Linear に書く粒度と実装時に読む粒度を分ける。
-- `write-linear-issue` に直接含めるのではなく、`decompose-task-from-materials` のような read-only skill にして、Linear 書き込みは別 workflow に渡すか。
+- `write-linear-issue` に直接含めるのではなく、`decompose-task-from-materials` のような read-only skill にして、Linear 書き込みは別 workflow skill に渡すか。
 
 ### トークン使用量とコストの可視化
 
@@ -196,7 +156,7 @@ Linear Method との扱い:
 
 - 依頼単位で、入力 token、出力 token、合計 token、概算コストが分かる。
 - 1 日単位で、合計 token、概算コスト、重かった依頼が分かる。
-- Project 更新、Linear 書き込み、外部情報取得など、どの workflow / skill が重いのか見える。
+- Project 更新、Linear 書き込み、外部情報取得など、どの workflow skill / capability skill が重いのか見える。
 - 使いすぎている場合に、情報取得範囲を狭める、分割する、要約を挟むなどの改善につなげられる。
 
 検討すること:
@@ -218,16 +178,16 @@ Linear Method との扱い:
 1. 取得できる usage 情報の場所を確認する。
 2. 今日の合計 token と依頼単位の上位だけを表示する read-only script を作る。
 3. コスト計算は概算として扱い、model 単価が不明な場合は token 数だけ表示する。
-4. Project 更新 workflow など、重い workflow の最後に token usage を返せるか検討する。
+4. Project 更新 workflow skill など、重い workflow skill の最後に token usage を返せるか検討する。
 
-### Project 更新 workflow の実運用テスト
+### Project 更新 workflow skill の実運用テスト
 
-`.agents/workflows/project-update.md` を使って、実際の Project 更新を 1 件試す。
+`workflow-update-project-note` skill を使って、実際の Project 更新を 1 件試す。
 
 確認すること:
 
 - 対象 Project folder だけを読む運用で足りるか。
-- fetch 系 skill に渡す入力を workflow から自然に決められるか。
+- fetch 系 skill に渡す入力を workflow skill から自然に決められるか。
 - 取得結果、分類、`status.md` 更新、レビューの流れが重すぎないか。
 - `review-project-status` の指摘が実際に整理に役立つか。
 
@@ -238,22 +198,22 @@ Linear Method との扱い:
 ほしい状態:
 
 - Slack、Linear、Notion、GitHub、Google Meet など、情報源ごとの取得を並列化できる。
-- 取得、分類、レビュー、draft 作成の責務を分けたまま、workflow 全体の待ち時間を短くできる。
+- 取得、分類、レビュー、draft 作成の責務を分けたまま、workflow skill 全体の待ち時間を短くできる。
 - 単純な取得や形式チェックには軽い model、判断や統合が必要な箇所には強い model を使える。
 - サブエージェントの出力は、事実、推測、重要リンク、未解決事項、ユーザー対応待ちなど、後続処理に渡しやすい形に揃える。
 - サブエージェントが勝手に書き込みや file 編集をしないように、read-only / write の境界を明確にする。
 
 検討すること:
 
-- workflow ごとに、どの step を並列化できるかを明記する。
+- workflow skill ごとに、どの step を並列化できるかを明記する。
 - サブエージェントに渡す入力 format と、返してほしい出力 format を揃える。
 - model 選択の基準を作る。例: 取得は軽量、分類は中程度、統合判断やレビューは高性能。
-- token / cost 可視化とつなげて、重い workflow でどの model が使われたか確認できるようにする。
+- token / cost 可視化とつなげて、重い workflow skill でどの model が使われたか確認できるようにする。
 - サブエージェント結果をそのまま note や Linear に貼らず、メイン agent が統合判断を行う。
 
 最初に試すなら:
 
-1. Project 更新 workflow で、情報源ごとの fetch を read-only サブエージェントに分ける。
+1. Project 更新 workflow skill で、情報源ごとの fetch を read-only サブエージェントに分ける。
 2. 各サブエージェントの出力を `classify-fetched-materials` に渡しやすい形に揃える。
 3. メイン agent が分類結果を統合し、`status.md` 更新や返答を作る。
 4. 実行時間、token、確認漏れが改善するかを見る。
@@ -266,7 +226,7 @@ Project の定期確認を行う場合の最小ルールを決める。
 
 - 対象 Project をどう選ぶか。
 - 確認頻度をどう決めるか。
-- heartbeat / automation を使う場合、workflow とどう接続するか。
+- heartbeat / automation を使う場合、workflow skill とどう接続するか。
 
 heartbeat / automation を設計する段階では、次の通知ポリシーも決める。
 
@@ -285,13 +245,13 @@ heartbeat / automation を設計する段階では、次の通知ポリシーも
 
 ## 次にやる候補
 
-1. Linear Project 時系列 document workflow を実際の Project で 1 回使い、document 作成・更新の重さを確認する。
+1. `workflow-update-linear-project-timeline` skill を実際の Project で 1 回使い、document 作成・更新の重さを確認する。
 2. Linear 書き込み skill を安全な対象で実地確認する。
-3. Project 更新 workflow を実際の Project で 1 回使い、重い部分を確認する。
+3. `workflow-update-project-note` skill を実際の Project で 1 回使い、重い部分を確認する。
 
 ## 判断メモ
 
 - 取得、分類、更新、レビューは混ぜない。
 - 外部サービスへの書き込みは、read-only の取得 skill と分ける。
-- Project 更新は workflow、個別能力は skill として扱う。
-- 新しい構造を増やす前に、既存の skill / workflow で運用できるかを試す。
+- Project 更新のような進行役は workflow skill、個別能力は capability skill として扱う。
+- 新しい構造を増やす前に、既存の skill で運用できるかを試す。

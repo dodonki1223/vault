@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear 書き込み後レビュー"
+  short_description: "Linear 書き込み後に構造をレビュー"
+  default_prompt: "$workflow-write-and-review-linear を使って、Linear への書き込み draft 作成、実行、レビューを行ってください。"

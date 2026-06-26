@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project note 更新"
+  short_description: "既存 Project note の status を更新"
+  default_prompt: "$workflow-update-project-note を使って、対象 Project note の状況を確認して更新してください。"

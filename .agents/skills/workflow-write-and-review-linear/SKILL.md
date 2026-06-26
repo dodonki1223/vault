@@ -1,10 +1,15 @@
+---
+name: workflow-write-and-review-linear
+description: Linear の issue、Project、milestone を作成・更新したあと、Linear Method に沿っているか review する workflow skill。Linear への書き込みとレビューを一連で行いたいときに使う。書き込み前に必ず draft とユーザー確認を挟む。
+---
+
 # Linear 書き込み後レビュー workflow
 
 ## 目的
 
 Linear の issue、Project、milestone を作成・更新したあと、Linear Method の原則に沿っているかを確認する。
 
-この workflow は進行役であり、書き込みとレビューの細部は skill に委譲する。
+この skill は進行役であり、書き込みとレビューの細部は capability skill に委譲する。
 
 ## 入力
 
@@ -88,8 +93,8 @@ Linear の issue、Project、milestone を作成・更新したあと、Linear M
 
 ## 境界
 
-- この workflow は Linear への書き込みを含むため、書き込み前に必ずユーザー確認を取る。
+- この skill は Linear への書き込みを含むため、書き込み前に必ずユーザー確認を取る。
 - レビュー後に自動で再書き込みしない。
 - 全 issue の網羅レビューを目的にしない。必要な範囲だけを狭く見る。
 - Linear の詳細な取得手順や API 操作の細部は workflow に書かず、各 skill に委譲する。
-- vault の Project note や notes は自動更新しない。必要なら別 workflow として扱う。
+- vault の Project note や notes は自動更新しない。必要なら別 workflow skill として扱う。

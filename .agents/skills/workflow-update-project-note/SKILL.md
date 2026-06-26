@@ -1,10 +1,15 @@
-# Project 更新 workflow
+---
+name: workflow-update-project-note
+description: 既存 Project note の状況を確認し、fetch / classify / review 系 skill を組み合わせて status.md を更新する workflow skill。Project 更新、status.md 更新、継続確認、情報源確認を依頼されたときに使う。新規 Project 作成は行わない。
+---
+
+# Project note 更新 workflow
 
 ## 目的
 
 既存 Project の状況を確認し、継続的に役立つ変化だけを Project note に反映する。
 
-この workflow は進行役であり、情報取得やレビューの細部は skill に委譲する。
+この skill は進行役であり、情報取得やレビューの細部は capability skill に委譲する。
 
 ## 入力
 
@@ -100,9 +105,9 @@
 
 ## 境界
 
-- この workflow は、Project 作成を行わない。新規作成は `create-project-note` skill を使う。
+- この skill は、Project 作成を行わない。新規作成は `create-project-note` skill を使う。
 - Project 本体は local-only なので、commit 対象にしない。
 - ログ全文、チケット一覧、メッセージ全文を `status.md` に貼らない。
 - fetch 系 skill、整理、更新、レビューの責務を混ぜない。
 - 取得情報の分類は `classify-fetched-materials` に任せ、workflow では分類結果の統合と更新判断だけを行う。
-- workflow 本体には、Slack / Linear / Notion / GitHub の取得手順の詳細を書かない。
+- この skill 本体には、Slack / Linear / Notion / GitHub の取得手順の詳細を書かない。

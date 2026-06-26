@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear Project 時系列更新"
+  short_description: "Linear Project の時系列 document を作成・更新"
+  default_prompt: "$workflow-update-linear-project-timeline を使って、Linear Project の時系列 document を作成または更新してください。"
