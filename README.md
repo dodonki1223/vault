@@ -20,3 +20,13 @@ pnpm usage:daily
 pnpm usage:session
 pnpm usage:monthly
 ```
+
+## Commands
+
+リポジトリ内の定型作業は `pnpm` scripts から実行する。script は処理を直接再実装せず、必要な skill を Codex CLI から呼び出す薄い入口にする。
+
+```bash
+pnpm save:commit
+```
+
+`save:commit` は `vault-git-commit` skill を使って差分確認、stage、commit を行う。判断に迷う差分がある場合は commit せずに報告する。
