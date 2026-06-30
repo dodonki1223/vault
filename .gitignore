@@ -13,3 +13,8 @@ projects/archive/*
 notes/local/*
 !notes/local/
 !notes/local/README.md
+
+# Node.js dependencies and local tool output.
+node_modules/
+npm-debug.log*
+pnpm-debug.log*

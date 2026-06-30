@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "usage:daily": "ccusage codex daily --timezone Asia/Tokyo",
+    "usage:session": "ccusage codex session --timezone Asia/Tokyo",
+    "usage:monthly": "ccusage codex monthly --timezone Asia/Tokyo"
+  },
+  "devDependencies": {
+    "ccusage": "^20.0.14"
+  }
+}
