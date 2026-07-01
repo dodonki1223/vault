@@ -16,10 +16,14 @@ Node.js の version は `.mise.toml` で固定する。
 Token usage の確認には `ccusage` を使う。
 
 ```bash
+pnpm usage:today
 pnpm usage:daily
+pnpm usage:weekly
 pnpm usage:session
 pnpm usage:monthly
 ```
+
+`usage:weekly` は直近 7 日分を日別に表示する。
 
 ## Commands
 
