@@ -45,6 +45,7 @@ Linear の issue、Project、milestone を作成・更新したあと、Linear M
 4. Linear に書き込む。
    - write skill の実行手順に従う。
    - 認証切れ、権限不足、対象不明、validation error の場合は追加書き込みを止める。
+   - Linear の一部 tool / MCP で `401: Reauthentication required`、`Unauthorized`、`Authentication required`、`oauth_token_invalid_grant` などが返った場合は、別の Linear tool やコメント追記で代替書き込みしない。まず認証エラーを報告し、ユーザーに再認証を依頼する。
    - 書き込み結果として、対象、変更内容、Linear link を返せる状態にする。
 
 5. 書き込み後レビューを行う。

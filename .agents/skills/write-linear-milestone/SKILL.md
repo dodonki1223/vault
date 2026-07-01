@@ -82,6 +82,7 @@ flowchart LR
 
 1. 利用可能な Linear connector / MCP / CLI を確認する。
 2. 対象 Project と milestone が正しいか read-only で確認する。
+   - この時点で `401: Reauthentication required`、`Unauthorized`、`Authentication required`、`oauth_token_invalid_grant` などが返った場合は、draft 作成や書き込みへ進まず、再認証を依頼する。
 3. 実行前に draft を提示する。
 4. ユーザーが明示的に承認した場合だけ書き込む。
 5. 実行後、変更した milestone、変更内容、Linear link を返す。
@@ -122,6 +123,8 @@ flowchart LR
 ## 失敗時
 
 認証切れ、権限不足、対象不明、Project 不明、validation error の場合は、追加書き込みを止めて次を返す。
+
+認証切れの場合は、別の Linear tool、コメント追記、CLI などで代替書き込みを続けない。ユーザーが再認証してから同じ対象を再試行する。
 
 - 失敗した操作。
 - 対象。
