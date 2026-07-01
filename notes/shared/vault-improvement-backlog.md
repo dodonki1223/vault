@@ -8,6 +8,38 @@
 
 ## 未対応
 
+### 改善 backlog の分割管理
+
+この `vault-improvement-backlog.md` が大きくなってきており、次に何を実装するか、どの改善が独立したタスクなのかが見えづらくなっている。改善案そのものを 1 つずつ扱えるように、backlog を index と task file に分ける運用を検討する。
+
+方針案:
+
+- `notes/shared/vault-improvement-backlog.md` は index として残す。
+- 詳細は `notes/shared/vault-improvements/` 配下の task file に分ける。
+- 各 task file には、背景、ほしい状態、最初にやること、関連 skill / script、完了条件、残課題を書く。
+- task file は 1 file 1 改善テーマにする。
+- 完了したものは index から削除するか、完了済みとして短く残す。
+
+候補構成:
+
+```text
+notes/shared/vault-improvements/
+  README.md
+  fetch-skill-format-check.md
+  mcp-connector-auth-check.md
+  skill-category-catalog.md
+  decompose-task-from-materials.md
+  assess-project-risks.md
+  token-usage-visibility.md
+  model-selection-policy.md
+```
+
+最初にやるなら:
+
+- 現在の backlog を読み、独立した改善テーマごとに task file へ分割する。
+- `vault-improvement-backlog.md` には、状態、優先度、task file link だけを残す。
+- 分割時に、すでに実装済みの内容が残っていないか再確認する。
+
 ### fetch 系 skill の出力形式の実地確認
 
 fetch 系 skill の返答が、`classify-fetched-materials` に渡しやすい粒度になっているかを実際の Project 更新で確認する。
@@ -330,6 +362,22 @@ source: ccusage codex daily
 - model 選択の基準を作る。例: 取得は軽量、分類は中程度、統合判断やレビューは高性能。
 - token / cost 可視化とつなげて、重い workflow skill でどの model が使われたか確認できるようにする。
 - サブエージェント結果をそのまま note や Linear に貼らず、メイン agent が統合判断を行う。
+
+暫定モデル選択ポリシー:
+
+| 用途 | Codex | Claude Code |
+|---|---|---|
+| 通常の実装、コード修正、テスト追加、軽い調査 | GPT-5.5 + Medium | Sonnet |
+| 難しい設計判断、難しい調査、難しい実装計画 | GPT-5.5 + High | Opus |
+| 仕様が明確な軽作業、文章整形、単純な差分確認、要約 | GPT-5.5 + Low または Medium | 可能なら Haiku |
+| 長時間の自律的な作業 | 計画に High。実装は Medium | 計画に Opus。実装は Sonnet |
+
+運用方針:
+
+- 迷ったら、最初の計画やリスク判定だけ強い model を使い、実装や単純作業は medium / lightweight に落とす。
+- 高コスト model を使った場合は、なぜ必要だったかを簡単に説明できる状態にする。
+- token usage と合わせて、どの用途でどの model が重かったかを後から見られるようにする。
+- model 名や料金は変わるため、この表は固定ルールではなく定期的に見直す。
 
 最初に試すなら:
 
