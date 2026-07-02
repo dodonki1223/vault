@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Sheets 情報取得"
+  short_description: "Google Sheets の表や範囲から情報を取得"
+  default_prompt: "$fetch-google-sheets-materials を使って、指定された Google Sheets の表や範囲から必要な情報を取得してください。"

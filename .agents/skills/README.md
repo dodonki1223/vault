@@ -25,6 +25,7 @@ skill は discovery のため flat layout にする。物理 directory では分
 - `fetch-notion-materials`: Notion / Docs から指定対象の情報を取得する。
 - `fetch-github-materials`: GitHub から指定対象の情報を取得する。
 - `fetch-google-meet-materials`: Google Meet の MTG メモや関連 Docs / Drive 情報を取得する。
+- `fetch-google-sheets-materials`: Google Sheets の spreadsheet、sheet、range から指定対象の情報を取得する。
 
 ### classify
 
