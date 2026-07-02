@@ -53,4 +53,5 @@ skill は discovery のため flat layout にする。物理 directory では分
 vault の構造や Project note を扱う skill。
 
 - `create-project-note`: 新しい Project note を `projects/active/` に作成する。
+- `manage-vault-improvements`: `improvements/` の改善 backlog と task file を管理する。
 - `vault-git-commit`: vault repository の変更を安全に確認して commit する。

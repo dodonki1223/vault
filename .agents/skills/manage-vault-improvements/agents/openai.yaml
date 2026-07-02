@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vault 改善管理"
+  short_description: "改善 backlog と task file を管理"
+  default_prompt: "manage-vault-improvements skill を使って、改善 backlog または task file を更新してください。"
