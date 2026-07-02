@@ -11,6 +11,10 @@ pnpm install
 
 Node.js の version は `.mise.toml` で固定する。
 
+## Repository Layout
+
+- `improvements/`: vault 全体の改善 backlog と task file。詳しくは `improvements/README.md` を見る。
+
 ## Usage
 
 Token usage の確認には `ccusage` を使う。
