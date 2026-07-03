@@ -3,6 +3,8 @@
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "scripts": {
+    "check:mcp": "node .agents/scripts/check-mcp-auth.mjs",
+    "validate:fetch-skills": "node .agents/scripts/validate-fetch-skills.mjs",
     "save:commit": "codex exec -C . --sandbox danger-full-access \"vault-git-commit skill を使って、現在の差分を確認し、適切な単位で commit してください。push はしないでください。判断に迷う差分がある場合は commit せずに報告してください。\"",
     "usage:today": "ccusage codex daily --timezone Asia/Tokyo --since $(date +%F) --until $(date +%F)",
     "usage:daily": "ccusage codex daily --timezone Asia/Tokyo",

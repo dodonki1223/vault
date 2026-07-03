@@ -16,6 +16,8 @@ skill は discovery のため flat layout にする。物理 directory では分
 
 単一責任の部品。workflow skill やユーザー依頼から直接使う。
 
+外部 connector / MCP が必要な skill で認証状態が不明な場合は、必要に応じて `pnpm check:mcp -- <name>` を使って設定状態を確認する。OAuth の実有効性は `codex mcp list` だけでは確定できないため、最終的には各 skill の read-only probe で確認する。
+
 ### fetch
 
 外部サービスから指定対象の情報だけを取得する read-only skill。分類や更新は行わない。
