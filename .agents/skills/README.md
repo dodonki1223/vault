@@ -50,6 +50,12 @@ skill は discovery のため flat layout にする。物理 directory では分
 - `review-project-status`: Project `status.md` 更新後に品質レビューを行う。
 - `review-linear-structure`: Linear の Project、milestone、issue が Linear Method に沿っているかレビューする。
 
+### utility
+
+repository の運用補助や local tool を扱う skill。
+
+- `check-token-usage`: `ccusage` と `pnpm usage:*` で token usage と推定 cost を確認する。
+
 ### project / vault
 
 vault の構造や Project note を扱う skill。

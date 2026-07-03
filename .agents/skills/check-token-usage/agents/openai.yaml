@@ -1,0 +1,4 @@
+interface:
+  display_name: "Token usage 確認"
+  short_description: "ccusage で token usage と推定 cost を確認"
+  default_prompt: "$check-token-usage を使って、指定された期間の token usage と推定 cost を確認してください。"

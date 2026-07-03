@@ -26,7 +26,6 @@
 | 未着手 | 中 | [skill の enable / invocation policy 管理](tasks/skill-invocation-policy.md) | skill ごとの自動起動・明示起動・無効化の推奨状態を管理する。 |
 | 未着手 | 中 | [Linear 書き込み skill の実地確認](tasks/linear-write-skill-validation.md) | issue / Project / milestone 書き込み skill を安全な対象で確認する。 |
 | 未着手 | 中 | [トークン使用量とコストの可視化](tasks/token-usage-visibility.md) | 依頼単位・日単位で token と概算コストを見られるようにする。 |
-| 未着手 | 中 | [token usage 確認 skill](tasks/check-token-usage-skill.md) | 自然言語で token usage と概算コストを確認できる skill を作る。 |
 | 未着手 | 中 | [サブエージェント並列化とモデル選択](tasks/subagent-parallelization-model-selection.md) | 情報取得の並列化とコストに応じた model 選択を整える。 |
 | 未着手 | 低 | [Project 更新 workflow skill の実運用テスト](tasks/project-update-workflow-validation.md) | Project 更新 workflow skill を実際の Project で検証する。 |
 | 未着手 | 低 | [定期確認の設計](tasks/recurring-project-check-design.md) | Project の定期確認、通知条件、heartbeat / automation の扱いを決める。 |
