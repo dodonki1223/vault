@@ -13,9 +13,8 @@ Codex、Claude Code など複数のエージェントで共通利用する skill
 - 繰り返し実行する workflow も skill として置く。
 - workflow skill は `workflow-` prefix を付け、通常 skill と名前で区別する。
 - 人間向けの一覧は `.agents/skills/README.md` を見る。新しい skill を追加したら catalog も更新する。
-- Codex 用に `.codex/skills` が `../.agents/skills` を指している。
-- `.codex/skills` 配下に見える skill は symlink 経由の同じ実体なので、直接編集しない。
-- 将来 Claude Code も対応する場合は、`.claude/skills` も `.agents/skills` を指す symlink にする。
+- Codex 用の `.codex/skills` と Claude Code 用の `.claude/skills` は、どちらも `../.agents/skills` を指す symlink にする。
+- `.codex/skills` や `.claude/skills` 配下に見える skill は symlink 経由の同じ実体なので、直接編集しない。
 - エージェントごとの都合で別形式が必要な場合は、共通 skill をコピーせず、薄い wrapper から `.agents/skills` を参照する。
 - `.codex/skills` や `.claude/skills` が実ディレクトリになっていたら二重管理の兆候なので、編集前に symlink へ戻す方針を確認する。
 
