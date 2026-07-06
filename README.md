@@ -43,12 +43,18 @@ pnpm usage:daily:claude
 ```bash
 pnpm check:mcp
 pnpm validate:fetch-skills
+pnpm notify:slack -- "通知本文"
+pnpm notify:slack:codex -- "通知本文"
+pnpm notify:slack:claude -- "通知本文"
+pnpm notify:slack:claude-code -- "通知本文"
 pnpm save:commit
 ```
 
 `check:mcp` は Codex CLI に設定された MCP の状態を確認する。対象を絞る場合は `pnpm check:mcp -- linear notion` のように指定する。
 
 `validate:fetch-skills` は `fetch-*materials` 系 skill の必須セクション、境界、`agents/openai.yaml` の有無を確認する。最初は warning 出力だけで、commit は止めない。
+
+`notify:slack` は Codex CLI から `slack-outgoing-message` skill を使って、ユーザー本人への mention 付きで Slack DM へ短い通知を送る。Codex を明示する場合は `pnpm notify:slack:codex -- "通知本文"`、Claude Code から送る場合は `pnpm notify:slack:claude-code -- "通知本文"` を使う。`notify:slack:claude` は同じ Claude Code 版の短い alias。送信前の prompt だけ確認したい場合は `pnpm notify:slack -- --dry-run "通知本文"`、`pnpm notify:slack:codex -- --dry-run "通知本文"`、`pnpm notify:slack:claude-code -- --dry-run "通知本文"` を使う。
 
 `save:commit` は `vault-git-commit` skill を使って差分確認、stage、commit を行う。判断に迷う差分がある場合は commit せずに報告する。
 commit 作成では `.git` への書き込みが必要なため、この script だけ Codex CLI を `--sandbox danger-full-access` で実行する。
