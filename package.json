@@ -6,11 +6,21 @@
     "check:mcp": "node .agents/scripts/check-mcp-auth.mjs",
     "validate:fetch-skills": "node .agents/scripts/validate-fetch-skills.mjs",
     "save:commit": "codex exec -C . --sandbox danger-full-access \"vault-git-commit skill を使って、現在の差分を確認し、適切な単位で commit してください。push はしないでください。判断に迷う差分がある場合は commit せずに報告してください。\"",
-    "usage:today": "ccusage codex daily --timezone Asia/Tokyo --since $(date +%F) --until $(date +%F)",
-    "usage:daily": "ccusage codex daily --timezone Asia/Tokyo",
-    "usage:weekly": "ccusage codex daily --timezone Asia/Tokyo --since $(date -v-6d +%F) --until $(date +%F)",
-    "usage:session": "ccusage codex session --timezone Asia/Tokyo",
-    "usage:monthly": "ccusage codex monthly --timezone Asia/Tokyo"
+    "usage:today": "ccusage daily --timezone Asia/Tokyo --since $(date +%F) --until $(date +%F)",
+    "usage:daily": "ccusage daily --timezone Asia/Tokyo",
+    "usage:weekly": "ccusage daily --timezone Asia/Tokyo --since $(date -v-6d +%F) --until $(date +%F)",
+    "usage:session": "ccusage session --timezone Asia/Tokyo",
+    "usage:monthly": "ccusage monthly --timezone Asia/Tokyo",
+    "usage:today:codex": "ccusage codex daily --timezone Asia/Tokyo --since $(date +%F) --until $(date +%F)",
+    "usage:daily:codex": "ccusage codex daily --timezone Asia/Tokyo",
+    "usage:weekly:codex": "ccusage codex daily --timezone Asia/Tokyo --since $(date -v-6d +%F) --until $(date +%F)",
+    "usage:session:codex": "ccusage codex session --timezone Asia/Tokyo",
+    "usage:monthly:codex": "ccusage codex monthly --timezone Asia/Tokyo",
+    "usage:today:claude": "ccusage claude daily --timezone Asia/Tokyo --since $(date +%F) --until $(date +%F)",
+    "usage:daily:claude": "ccusage claude daily --timezone Asia/Tokyo",
+    "usage:weekly:claude": "ccusage claude daily --timezone Asia/Tokyo --since $(date -v-6d +%F) --until $(date +%F)",
+    "usage:session:claude": "ccusage claude session --timezone Asia/Tokyo",
+    "usage:monthly:claude": "ccusage claude monthly --timezone Asia/Tokyo"
   },
   "devDependencies": {
     "ccusage": "^20.0.14"

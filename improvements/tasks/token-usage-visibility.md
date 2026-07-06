@@ -13,7 +13,7 @@
 
 ## 検討すること
 
-- Codex / Claude Code など、利用する agent ごとに token usage を取得できる場所があるか確認する。
+- ~~Codex / Claude Code など、利用する agent ごとに token usage を取得できる場所があるか確認する。~~ → 解決。`ccusage` は `claude` / `codex` を data source ID として持ち、`ccusage claude daily` / `ccusage codex daily` のように agent 別に絞れる。agent 指定なしの `ccusage daily` は検出できた全 source を合算する。`package.json` の `usage:*` (合算) と `usage:*:codex` / `usage:*:claude` (agent 別) に反映済み (2026-07-06)。
 - Claude Code / Codex CLI の local usage を見るために `ccusage` を使う。
 - session / turn / command ごとの usage log を local に残せるか確認する。
 - 料金は model ごとに変わるため、価格表を直接埋め込まず、model 名、入力 token、出力 token、計算日時を残す。

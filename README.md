@@ -17,7 +17,7 @@ Node.js の version は `.mise.toml` で固定する。
 
 ## Usage
 
-Token usage の確認には `ccusage` を使う。
+Token usage の確認には `ccusage` を使う。`ccusage` は Codex CLI と Claude Code の両方の local usage file を読める。
 
 ```bash
 pnpm usage:today
@@ -27,7 +27,14 @@ pnpm usage:session
 pnpm usage:monthly
 ```
 
-`usage:weekly` は直近 7 日分を日別に表示する。
+`usage:*`(agent 指定なし)は検出できた agent(Codex / Claude Code)をまとめて表示する。Codex だけ、Claude Code だけを見たい場合は `:codex` / `:claude` を付ける。
+
+```bash
+pnpm usage:daily:codex
+pnpm usage:daily:claude
+```
+
+`usage:weekly` / `usage:weekly:codex` / `usage:weekly:claude` は直近 7 日分を日別に表示する。
 
 ## Commands
 
