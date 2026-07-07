@@ -4,6 +4,13 @@
   "packageManager": "pnpm@11.7.0",
   "scripts": {
     "check:mcp": "node .agents/scripts/check-mcp-auth.mjs",
+    "agent:profile": "node .agents/scripts/run-agent-profile.mjs",
+    "codex:profile": "node .agents/scripts/run-agent-profile.mjs --agent codex",
+    "codex:fetch-light": "node .agents/scripts/run-agent-profile.mjs --agent codex fetch-light",
+    "codex:fetch-standard": "node .agents/scripts/run-agent-profile.mjs --agent codex fetch-standard",
+    "claude:profile": "node .agents/scripts/run-agent-profile.mjs --agent claude",
+    "claude:fetch-light": "node .agents/scripts/run-agent-profile.mjs --agent claude fetch-light",
+    "claude:fetch-standard": "node .agents/scripts/run-agent-profile.mjs --agent claude fetch-standard",
     "validate:fetch-skills": "node .agents/scripts/validate-fetch-skills.mjs",
     "notify:slack": "node .agents/scripts/notify-slack.mjs",
     "notify:slack:codex": "node .agents/scripts/notify-slack.mjs --agent codex",

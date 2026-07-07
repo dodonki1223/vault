@@ -42,6 +42,14 @@ pnpm usage:daily:claude
 
 ```bash
 pnpm check:mcp
+pnpm agent:profile -- --agent codex fetch-light "prompt"
+pnpm agent:profile -- --agent claude fetch-light "prompt"
+pnpm codex:fetch-light -- "prompt"
+pnpm codex:fetch-standard -- "prompt"
+pnpm claude:fetch-light -- "prompt"
+pnpm claude:fetch-standard -- "prompt"
+pnpm codex:profile -- fetch-light "prompt"
+pnpm claude:profile -- fetch-light "prompt"
 pnpm validate:fetch-skills
 pnpm notify:slack -- "通知本文"
 pnpm notify:slack:codex -- "通知本文"
@@ -51,6 +59,8 @@ pnpm save:commit
 ```
 
 `check:mcp` は Codex CLI に設定された MCP の状態を確認する。対象を絞る場合は `pnpm check:mcp -- linear notion` のように指定する。
+
+`agent:profile` は、repository 管理の推奨 model profile を読んで Codex または Claude を起動する。profile 定義は `.agents/model-profiles/` に置く。`codex:fetch-light` / `codex:fetch-standard` / `claude:fetch-light` / `claude:fetch-standard` はその薄い alias。必要なら `pnpm codex:profile -- --model ... --reasoning ... <profile-name> "prompt"` や `pnpm claude:profile -- --model ... --effort ... <profile-name> "prompt"` で local override できる。fetch 系の低コスト実行を固定したいときは、この wrapper を使う。
 
 `validate:fetch-skills` は `fetch-*materials` 系 skill の必須セクション、境界、`agents/openai.yaml` の有無を確認する。最初は warning 出力だけで、commit は止めない。
 

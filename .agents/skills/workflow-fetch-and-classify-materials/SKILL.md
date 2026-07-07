@@ -11,6 +11,8 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
 
 この skill は進行役であり、各情報源の取得手順の細部や、最終的な更新判断は capability skill またはメイン agent に委譲する。
 
+複数の情報源を使う場合は、fetch 系の取得を read-only サブエージェントとして並列実行してよい。統合判断と分類結果の最終確認はメイン agent が行う。
+
 ## 入力
 
 - 調べたい対象。例: topic、Slack thread、Linear issue、Project、Notion page、Google Meet、Google Sheets。
@@ -33,6 +35,8 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
 ## 参照する reference
 
 - `.agents/references/subagent-fetch-contract.md`: fetch 系サブエージェントの入力と出力の共通契約。
+- `.agents/model-profiles/fetch-light.toml`: fetch 系の軽量取得で使う repository 推奨 profile。
+- `.agents/model-profiles/fetch-standard.toml`: fetch 系の通常取得で使う repository 推奨 profile。
 
 ## 手順
 
@@ -56,10 +60,14 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
    - `.agents/references/subagent-fetch-contract.md` に従い、各 fetch 系 skill へ渡す入力をそろえる。
    - 少なくとも、対象、期間、観点、除外、呼び出し理由を明示する。
    - 情報源ごとに無理に同じ対象を探さず、その情報源で自然に取得できる単位へ落とす。
+   - サブエージェントで実行する場合は、各情報源ごとに独立した入力として切り出す。
 
 4. 必要な情報を取得する。
    - 情報源ごとに対応する fetch 系 skill を使う。
-   - 複数情報源が必要な場合は、read-only の取得を並列で進めてよい。
+   - 複数情報源が必要な場合は、read-only の取得をサブエージェントで並列実行してよい。
+   - サブエージェントに渡す役割は「取得だけ」に限定する。分類、更新、優先度判断、通知判断は渡さない。
+   - 各サブエージェントには、対応する fetch 系 skill と `.agents/references/subagent-fetch-contract.md` の契約を前提として渡す。
+   - 取得対象が 1 情報源だけ、またはサブエージェント化のオーバーヘッドが大きい場合は、メイン agent がそのまま取得してよい。
    - fetch 系 skill の返答は、そのまま更新先へ貼らず、取得結果として保持する。
    - 認証不足、権限不足、対象不明の場合は、その情報源だけ失敗理由を保持し、他の取得を継続できるなら継続する。
 
@@ -143,4 +151,24 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
 - fetch 系 skill の代わりに独自の取得手順を書き始めない。
 - write 系 skill を勝手に呼ばない。
 - 取得結果をそのまま正本扱いせず、必要なら後続の review や更新 skill に渡す。
-- model の選択や固定はこの skill に埋め込まない。model 運用は別のルールで扱う。
+- model の選択や固定は、shared skill の長い文章ではなく、repository 管理の model profile と実行 wrapper で扱う。
+- サブエージェントを使う場合でも、書き込み可能な操作や file 編集を委譲しない。取得系は read-only に限定する。
+
+## サブエージェント実行の指針
+
+- 並列化してよいもの:
+  - Slack、Linear、Notion、GitHub、Google Meet、Google Sheets など、情報源ごとの取得
+- 並列化しないもの:
+  - 情報源横断の統合判断
+  - 分類結果の最終確認
+  - 更新先への反映判断
+- サブエージェントへの依頼文には、少なくとも次を含める:
+  - 使う fetch 系 skill 名
+  - 使う profile 名。例: `fetch-light` / `fetch-standard`
+  - 対象
+  - 期間
+  - 観点
+  - 除外条件
+  - 呼び出し理由
+  - `.agents/references/subagent-fetch-contract.md` に従って返すこと
+- 返ってきた結果は、そのまま正として採用せず、メイン agent が重複、矛盾、取りこぼしを確認する。
