@@ -1,6 +1,6 @@
 ---
 name: workflow-update-project-note
-description: 既存 Project note の状況を確認し、fetch / classify / review 系 skill を組み合わせて status.md を更新する workflow skill。Project 更新、status.md 更新、継続確認、情報源確認を依頼されたときに使う。新規 Project 作成は行わない。
+description: 既存 Project note の状況を確認し、情報取得と分類 workflow、review 系 skill を組み合わせて status.md を更新する workflow skill。Project 更新、status.md 更新、継続確認、情報源確認を依頼されたときに使う。新規 Project 作成は行わない。
 ---
 
 # Project note 更新 workflow
@@ -9,7 +9,7 @@ description: 既存 Project note の状況を確認し、fetch / classify / revi
 
 既存 Project の状況を確認し、継続的に役立つ変化だけを Project note に反映する。
 
-この skill は進行役であり、情報取得やレビューの細部は capability skill に委譲する。
+この skill は進行役であり、情報取得と分類は `workflow-fetch-and-classify-materials` に、レビューは `review-project-status` に委譲する。
 
 ## 入力
 
@@ -19,11 +19,7 @@ description: 既存 Project note の状況を確認し、fetch / classify / revi
 
 ## 使う skill
 
-- `fetch-slack-materials`: Slack から指定対象の情報を取得する。
-- `fetch-linear-materials`: Linear から指定対象の情報を取得する。
-- `fetch-notion-materials`: Notion / Docs から指定対象の情報を取得する。
-- `fetch-github-materials`: GitHub から指定対象の情報を取得する。
-- `classify-fetched-materials`: 取得済み情報を事実、決定事項、推測、重要リンク、未解決事項、ユーザー対応待ちに分類する。
+- `workflow-fetch-and-classify-materials`: 必要な情報源を見極め、取得結果を分類する。
 - `review-project-status`: `status.md` 更新後に品質レビューを行う。
 
 ## 手順
@@ -43,39 +39,34 @@ description: 既存 Project note の状況を確認し、fetch / classify / revi
    - 情報源ごとに、対象、期間、取得観点、除外条件を明確にする。
    - 外部情報が不要な場合は、ユーザー入力と既存 note だけで更新する。
 
-4. 必要な情報を取得する。
-   - 情報源ごとに fetch 系 skill を使う。
-   - fetch 系 skill には Project 固有の判断を押し込まない。
-   - fetch 系 skill の出力は、取得結果として扱い、そのまま `status.md` に貼らない。
+4. 必要な情報を取得して分類する。
+   - 外部情報が必要な場合は `workflow-fetch-and-classify-materials` を使う。
+   - 対象、期間、観点、除外条件、取得理由、必要な短い Project 文脈を渡す。
+   - 個別の fetch 系 skill や `classify-fetched-materials` をこの workflow から直接ばらばらに呼ぶのではなく、原則として情報取得と分類 workflow に委譲する。
+   - 取得結果と分類結果は、そのまま `status.md` に貼らず、統合前の材料として扱う。
 
-5. 取得結果を分類する。
-   - `classify-fetched-materials` skill を使う。
-   - 取得済み情報、取得元、取得理由、必要な短い Project 文脈を渡す。
-   - `classify-fetched-materials` には、外部情報の追加取得、Project 固有の優先度判断、`status.md` への統合をさせない。
-   - 事実、決定事項、推測、重要リンク、未解決事項、ユーザー対応待ち、分類できなかったものを分ける。
-
-6. 分類結果を Project 文脈に統合する。
+5. 分類結果を Project 文脈に統合する。
    - 分類結果をそのまま貼らず、Project の現在状況として継続的に役立つものだけを選ぶ。
    - 複数の情報源が矛盾する場合は、事実、決定事項、推測を分け、未解決事項として残す。
    - 古い情報、決定済みの懸念、完了済みタスクは現在のブロッカーや未解決事項に残さない。
 
-7. `status.md` を更新する。
+6. `status.md` を更新する。
    - durable な変化だけを反映する。
    - `概要`、`現在の状況`、`ブロッカー`、`未解決事項`、`次に見ること`、`情報源`、`変更履歴` の整合性を保つ。
    - `変更履歴` は監査ログではなく、今回変わった判断、状態、ブロッカー、次アクションだけを短く残す。
    - 日付が重要な場合は、相対表現ではなく絶対日付で書く。
 
-8. 更新後レビューを行う。
+7. 更新後レビューを行う。
    - `review-project-status` skill を使って `status.md` を確認する。
    - レビューで安全に直せる指摘は修正する。
    - 外部確認が必要なもの、削除判断が必要なものは勝手に消さず、確認事項として残す。
 
-9. 不足している情報を確認する。
+8. 不足している情報を確認する。
    - `.agents/references/project-required-info.md` の項目を見て、Project に不足している情報を確認する。
    - 不足があっても更新を止めない。
    - 不足項目は推測で埋めず、ユーザーへの返答に `不足している情報` として出す。
 
-10. 結果を返す。
+9. 結果を返す。
    - 更新した Project path。
    - 変更した判断、状態、ブロッカー、次アクション。
    - 不足している情報。
@@ -108,6 +99,6 @@ description: 既存 Project note の状況を確認し、fetch / classify / revi
 - この skill は、Project 作成を行わない。新規作成は `create-project-note` skill を使う。
 - Project 本体は local-only なので、commit 対象にしない。
 - ログ全文、チケット一覧、メッセージ全文を `status.md` に貼らない。
-- fetch 系 skill、整理、更新、レビューの責務を混ぜない。
-- 取得情報の分類は `classify-fetched-materials` に任せ、workflow では分類結果の統合と更新判断だけを行う。
-- この skill 本体には、Slack / Linear / Notion / GitHub の取得手順の詳細を書かない。
+- 情報取得と分類、更新、レビューの責務を混ぜない。
+- この workflow では分類結果の統合と更新判断だけを行い、取得と分類そのものは `workflow-fetch-and-classify-materials` に委譲する。
+- この skill 本体には、Slack / Linear / Notion / GitHub など個別情報源の取得手順の詳細を書かない。

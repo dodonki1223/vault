@@ -1,0 +1,4 @@
+interface:
+  display_name: "情報取得と分類 workflow"
+  short_description: "複数の fetch 系 skill を使って情報を集めて分類"
+  default_prompt: "$workflow-fetch-and-classify-materials を使って、必要な情報を取得して分類してください。"

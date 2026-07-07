@@ -8,6 +8,7 @@ skill は discovery のため flat layout にする。物理 directory では分
 
 複数の capability skill を組み合わせる進行役。ユーザーが明示的に起動したい繰り返し workflow はここに置く。
 
+- `workflow-fetch-and-classify-materials`: 複数の fetch 系 skill を組み合わせて情報を取得し、分類結果を後続で使いやすい形へ整理する。
 - `workflow-update-project-note`: 既存 Project note の状況確認、情報取得、分類、`status.md` 更新、更新後レビューを進行する。
 - `workflow-update-linear-project-timeline`: Linear Project に紐づく情報から、後から参画する人向けの時系列 document を作成・更新する。
 - `workflow-write-and-review-linear`: Linear への書き込み draft、実行、Linear Method に沿ったレビューを進行する。
