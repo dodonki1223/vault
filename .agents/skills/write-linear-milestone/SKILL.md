@@ -18,6 +18,12 @@ Linear Project milestone の作成・更新だけを担当する。個別 issue 
 - token、OAuth code、API key、cookie を受け取らない・保存しない。
 - vault の Project note を自動更新しない。
 
+## Linear MCP の制約（Codex / Claude 共通で確認済み）
+
+- milestone には単独の URL が存在しない。Linear MCP の `get_milestone` / `save_milestone` はどちらも `url` を返さない。実行後に link を返す場合は、対象 Project の URL を返し、「milestone 自体の単独 URL はない」旨を明記する。
+- milestone を削除・archive する tool は存在しない（`delete_milestone` に相当する tool がない）。削除したい場合は Linear の Web UI から手動操作するようユーザーに案内する。自動では止められないので、代替手段（コメントで無効化を明記するなど）で誤魔化さない。
+- issue（`save_issue` の `state`）と Project（`save_project` の `state`）は `Canceled` 状態への変更はできるが、これは Linear 上の soft archive であり、完全な delete ではない。完全に消す場合も Web UI が必要。
+
 ## 事前確認
 
 書き込み前に、次を特定する。
@@ -85,7 +91,7 @@ flowchart LR
    - この時点で `401: Reauthentication required`、`Unauthorized`、`Authentication required`、`oauth_token_invalid_grant` などが返った場合は、draft 作成や書き込みへ進まず、再認証を依頼する。
 3. 実行前に draft を提示する。
 4. ユーザーが明示的に承認した場合だけ書き込む。
-5. 実行後、変更した milestone、変更内容、Linear link を返す。
+5. 実行後、変更した milestone、変更内容、Linear link（milestone 自体の URL がないため、対象 Project の URL）を返す。
 
 ## Draft フォーマット
 
@@ -116,7 +122,7 @@ flowchart LR
 - 対象 Project:
 - 対象 milestone:
 - 変更内容:
-- Link:
+- Link: 対象 Project の URL（milestone 自体の単独 URL は Linear 上に存在しない）
 - 補足:
 ```
 
