@@ -68,6 +68,14 @@ source: ccusage codex daily
 
 週次や月次の場合は、合計と日別の大きな傾向だけを返す。長い table 全体を貼る必要はない。
 
+## session が重くなっているかの判断
+
+`pnpm usage:session` で他の直近 session と並べて比較する。絶対的な token 数・cost の閾値はユーザーの予算次第でこの skill では固定しない。
+
+- 対象 session の total tokens または推定 cost が、直近の session に比べて明らかに大きい（目安: 2〜3 倍以上）場合、別 session への切り替えを一言だけ添える。
+- 判断材料が乏しい場合（session 数が少ない、比較対象がないなど）は、切り替え判断を避けて数値だけ返す。
+- 固定の閾値を決めて自動的に知らせたい場合は、別 task の `token usage 高騰通知 skill` を案内する。この skill では自動通知は行わない。
+
 ## 実行後の確認
 
 - 対象期間がユーザーの依頼と一致しているか確認する。
