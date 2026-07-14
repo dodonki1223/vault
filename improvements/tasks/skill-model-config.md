@@ -2,7 +2,7 @@
 
 ## 背景
 
-現状、skill の実行時にどのモデルを使うかは暫定ポリシー表（`subagent-parallelization-model-selection.md`）を参照するにとどまり、自動判定や強制指定の仕組みがない。skill の性質に応じたモデル選択が属人化しており、コスト増や判断ミスが起きやすい。
+現状、skill の実行時にどのモデルを使うかは `.agents/model-profiles/fetch-light.toml` / `fetch-standard.toml` の設定を参照するにとどまり、自動判定や強制指定の仕組みがない。skill の性質に応じたモデル選択が属人化しており、コスト増や判断ミスが起きやすい。
 
 ## ほしい状態
 
@@ -20,7 +20,7 @@
 
 ## 関連
 
-- [`subagent-parallelization-model-selection.md`](subagent-parallelization-model-selection.md): 暫定モデル選択ポリシー表
+- `.agents/model-profiles/fetch-light.toml` / `fetch-standard.toml`: 現在の model 選択の実体
 
 ## 完了条件
 
@@ -35,6 +35,8 @@
 - セッション途中でのモデル変更は不可。モデルはセッション開始時に固定される。
 - `Agent` ツールの `model` パラメータでサブエージェントにモデルを指定できる。
 - 「重い判断だけ Opus のサブエージェントに委譲し、軽い処理は Sonnet のまま」という設計が可能。
+- ただし `Agent` ツールの `model` は `sonnet` / `opus` / `haiku` / `fable` の alias のみを受け付ける。`claude-sonnet-5` のような正式な model ID や、GPT 系（`gpt-5.6-terra` など）は指定できない。
+- `.agents/model-profiles/*.toml` は `Agent` ツールには自動適用されない。適用されるのは `.agents/scripts/run-fetch-skill.mjs` / `run-agent-profile.mjs`（`pnpm fetch:materials` など）を command として明示的に呼んだ場合だけ（2026-07-14 確認、`subagent-parallelization-model-selection.md` の実装時に判明）。
 
 ### Codex
 

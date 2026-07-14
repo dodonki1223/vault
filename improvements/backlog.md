@@ -25,7 +25,6 @@
 | 未着手 | 中 | [skill のカテゴリ管理](tasks/skill-category-management.md) | flat layout のままカテゴリ別に skill を見つけやすくする。 |
 | 未着手 | 中 | [skill の enable / invocation policy 管理](tasks/skill-invocation-policy.md) | skill ごとの自動起動・明示起動・無効化の推奨状態を管理する。 |
 | 未着手 | 中 | [token usage 高騰通知 skill](tasks/token-usage-alert-skill.md) | token / cost が一定の目安を超えたら個人 Slack DM へ通知する。 |
-| 未着手 | 中 | [サブエージェント並列化とモデル選択](tasks/subagent-parallelization-model-selection.md) | 情報取得の並列化とコストに応じた model 選択を整える。 |
 | 未着手 | 中 | [skill ごとのモデル自動判定と固定指定](tasks/skill-model-config.md) | skill の性質からモデルを自動推論し、特定 skill は固定モデルを宣言できるようにする。 |
 | 未着手 | 中 | [問題解決メソッド skill](tasks/problem-solving-method-skill.md) | 理想と現実のギャップを事実・解釈・真因・課題・優先度に整理するフレームワークを skill 化する。 |
 | 未着手 | 低 | [Project 更新 workflow skill の実運用テスト](tasks/project-update-workflow-validation.md) | Project 更新 workflow skill を実際の Project で検証する。 |
