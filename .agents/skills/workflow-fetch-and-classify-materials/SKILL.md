@@ -37,6 +37,7 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
 - `.agents/references/subagent-fetch-contract.md`: fetch 系サブエージェントの入力と出力の共通契約。
 - `.agents/model-profiles/fetch-light.toml`: fetch 系の軽量取得で使う repository 推奨 profile。
 - `.agents/model-profiles/fetch-standard.toml`: fetch 系の通常取得で使う repository 推奨 profile。
+- `.agents/scripts/run-fetch-skill.mjs`: fetch 系 skill を profile 付きで実行する command wrapper。
 
 ## 手順
 
@@ -64,9 +65,10 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
 
 4. 必要な情報を取得する。
    - 情報源ごとに対応する fetch 系 skill を使う。
+   - 実行時は、個別に prompt を組み立てるより、原則として `.agents/scripts/run-fetch-skill.mjs` または `pnpm fetch:materials` / `pnpm codex:fetch:materials` / `pnpm claude:fetch:materials` の command 層を使う。
    - 複数情報源が必要な場合は、read-only の取得をサブエージェントで並列実行してよい。
    - サブエージェントに渡す役割は「取得だけ」に限定する。分類、更新、優先度判断、通知判断は渡さない。
-   - 各サブエージェントには、対応する fetch 系 skill と `.agents/references/subagent-fetch-contract.md` の契約を前提として渡す。
+   - 各サブエージェントには、対応する fetch 系 skill、profile 名、`.agents/references/subagent-fetch-contract.md` の契約を前提として渡す。
    - 取得対象が 1 情報源だけ、またはサブエージェント化のオーバーヘッドが大きい場合は、メイン agent がそのまま取得してよい。
    - fetch 系 skill の返答は、そのまま更新先へ貼らず、取得結果として保持する。
    - 認証不足、権限不足、対象不明の場合は、その情報源だけ失敗理由を保持し、他の取得を継続できるなら継続する。
@@ -172,3 +174,12 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
   - 呼び出し理由
   - `.agents/references/subagent-fetch-contract.md` に従って返すこと
 - 返ってきた結果は、そのまま正として採用せず、メイン agent が重複、矛盾、取りこぼしを確認する。
+
+### command 入口
+
+- Codex:
+  - `pnpm codex:fetch:materials -- --skill <fetch-skill> --profile <fetch-light|fetch-standard> "依頼内容"`
+- Claude Code:
+  - `pnpm claude:fetch:materials -- --skill <fetch-skill> --profile <fetch-light|fetch-standard> "依頼内容"`
+- 共通:
+  - `pnpm fetch:materials -- --agent <codex|claude> --skill <fetch-skill> --profile <fetch-light|fetch-standard> "依頼内容"`
