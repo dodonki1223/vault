@@ -75,3 +75,4 @@ Codex / Claude Code どちらでも `mcp_servers.slack` の generic 登録（`ur
 - OAuth の live probe を harness 側でどこまで扱うか。
 - ~~Slack 送信について、Claude Code 側でどの MCP / plugin / tool を標準にするか。~~ → 上記の通り解決（Claude Code CLI では不可、Cowork/claude.ai の account-level connector を使う）。
 - Codex 側の Slack 送信（App 経由の write skill）が実際に使えるかは未検証。
+- Linear write 系 skill（issue/Project/Milestone）は実地確認済み（2026-07-14）。Codex / Claude Code とも Linear MCP の tool 一覧が同一（`delete_issue` / `delete_project` / `delete_milestone` が存在せず、milestone に単独 URL もない）と確認できたため、この harness で「認証切れ」以外に「delete 系 tool の有無」もチェック対象に含めるかは今後の検討課題。
