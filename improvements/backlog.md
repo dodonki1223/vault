@@ -25,7 +25,7 @@
 | 未着手 | 中 | [skill のカテゴリ管理](tasks/skill-category-management.md) | flat layout のままカテゴリ別に skill を見つけやすくする。 |
 | 未着手 | 中 | [skill の enable / invocation policy 管理](tasks/skill-invocation-policy.md) | skill ごとの自動起動・明示起動・無効化の推奨状態を管理する。 |
 | 未着手 | 中 | [Linear 書き込み skill の実地確認](tasks/linear-write-skill-validation.md) | issue / Project / milestone 書き込み skill を安全な対象で確認する。 |
-| 未着手 | 中 | [Linear issue フォーマットの共通化](tasks/linear-issue-format-standardization.md) | issue description の標準テンプレートを定義し、作成時に自動で下敷きにする。 |
+| 未着手 | 中 | [fetch-web-materials skill の追加](tasks/fetch-web-materials-skill.md) | connector に依存しない一般的な Web ページ・ブログ・ニュースの取得を、既存 fetch 系 skill と同じパターンで担う。 |
 | 未着手 | 中 | [token usage 高騰通知 skill](tasks/token-usage-alert-skill.md) | token / cost が一定の目安を超えたら個人 Slack DM へ通知する。 |
 | 未着手 | 中 | [サブエージェント並列化とモデル選択](tasks/subagent-parallelization-model-selection.md) | 情報取得の並列化とコストに応じた model 選択を整える。 |
 | 未着手 | 中 | [skill ごとのモデル自動判定と固定指定](tasks/skill-model-config.md) | skill の性質からモデルを自動推論し、特定 skill は固定モデルを宣言できるようにする。 |
