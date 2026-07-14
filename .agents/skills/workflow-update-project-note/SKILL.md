@@ -102,3 +102,16 @@ description: 既存 Project note の状況を確認し、情報取得と分類 w
 - 情報取得と分類、更新、レビューの責務を混ぜない。
 - この workflow では分類結果の統合と更新判断だけを行い、取得と分類そのものは `workflow-fetch-and-classify-materials` に委譲する。
 - この skill 本体には、Slack / Linear / Notion / GitHub など個別情報源の取得手順の詳細を書かない。
+
+## サブエージェント実行の指針
+
+- 並列化してよいもの:
+  - 情報源ごとの取得（手順4）。`workflow-fetch-and-classify-materials` に委譲した時点で、その内部で情報源ごとに並列化される。
+  - 更新後レビュー（手順7 `review-project-status`）と、不足情報の確認（手順8、`.agents/references/project-required-info.md` との照合）。どちらも更新済みの `status.md` を読むだけの read-only 確認で、互いの結果に依存しないため並列実行してよい。
+- 並列化しないもの:
+  - 分類結果を Project 文脈に統合する判断（手順5）。
+  - `status.md` の更新そのもの（手順6）。レビューは更新後の状態を確認するため、更新の前には進められない。
+  - レビュー指摘を反映するかどうかの判断。
+- model の選択:
+  - 情報取得・分類は `workflow-fetch-and-classify-materials` に委譲するため、その内部で使われる fetch 系 profile（`.agents/model-profiles/fetch-light.toml` / `fetch-standard.toml`）に従う。並列実行するサブエージェントは `Agent` tool ではなく command（`pnpm fetch:materials` など）経由で呼び出す点も含めて、`workflow-fetch-and-classify-materials` の指針を参照する。
+  - 分類結果の統合、`status.md` の記述判断はメイン agent が行い、軽量 profile に委譲しない。

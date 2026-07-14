@@ -221,3 +221,16 @@ Linear Project に紐づく issue、milestone、document、MTG メモ、Slack th
 - ログ全文、議事録全文、コメント全文、チケット一覧を document に貼らない。
 - Linear への書き込み前に必ず draft とユーザー確認を挟む。
 - 書き込み後の構造レビューが必要な場合は、別途 `review-linear-structure` を使う。
+
+## サブエージェント実行の指針
+
+- 並列化してよいもの:
+  - 手順4「必要な情報を取得する」で、手順3で決めた複数の情報源（Slack、Notion、Google Meet、GitHub など）ごとの取得。各 fetch 系 skill は read-only で、対象が異なる限り独立して実行できる。
+  - サブエージェントに渡す役割は「取得だけ」に限定し、`.agents/references/subagent-fetch-contract.md` の契約に沿わせる。
+- 並列化しないもの:
+  - 手順2「既存情報を取得する」（Linear の現在地確認。後続でどの情報源を追加取得するか決める前提になるため、他の取得より先に完了させる）。
+  - 手順5「取得結果を分類する」（全情報源の取得が揃った後にまとめて行う）。
+  - 手順6以降（時系列に入れる出来事の選定、draft 作成、書き込み前チェック、Linear への書き込み）。
+- model の選択:
+  - 手順4の並列取得は `.agents/model-profiles/fetch-light.toml` または `fetch-standard.toml` を使う。呼び出しは `Agent` tool ではなく、`pnpm fetch:materials` / `pnpm codex:fetch:materials` / `pnpm claude:fetch:materials` などの command 経由にする（`workflow-fetch-and-classify-materials` の `サブエージェント実行の指針` と同じ理由）。
+  - 時系列の選定、draft 作成、書き込み前チェックはメイン agent が行い、軽量 profile に委譲しない。

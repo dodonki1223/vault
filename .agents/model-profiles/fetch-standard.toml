@@ -1,7 +1,7 @@
 [codex]
-model = "gpt-5.5"
+model = "gpt-5.6-terra"
 model_reasoning_effort = "medium"
 
 [claude]
-model = "claude-sonnet-4-6"
+model = "claude-sonnet-5"
 effort = "medium"

@@ -160,8 +160,12 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets、�
 
 ## サブエージェント実行の指針
 
+- 並列実行する「サブエージェント」は、Claude Code の `Agent` tool ではなく、`### command 入口` の command 経由で呼び出す（並列に Bash で複数起動してよい）。理由:
+  - `Agent` tool は Claude family（`sonnet` / `opus` / `haiku` / `fable`）以外の model を指定できない。GPT 系 model（`gpt-5.6-terra` など）は command 経由でしか使えない。
+  - `Agent` tool を使う場合、`.agents/model-profiles/*.toml` は自動適用されない。model を反映させるには `model` パラメータを明示指定する必要があり、profile との対応がずれやすい。
+  - command 経由なら `.agents/model-profiles/fetch-light.toml` / `fetch-standard.toml` の `model` がそのまま使われるため、profile と実行結果が一致する。
 - 並列化してよいもの:
-  - Slack、Linear、Notion、GitHub、Google Meet、Google Sheets など、情報源ごとの取得
+  - Slack、Linear、Notion、GitHub、Google Meet、Google Sheets、Web など、情報源ごとの取得
 - 並列化しないもの:
   - 情報源横断の統合判断
   - 分類結果の最終確認
