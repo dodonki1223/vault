@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web からの情報取得"
+  short_description: "指定された Web ページ・ブログ・ニュースから情報を取得"
+  default_prompt: "$fetch-web-materials を使って、指定された Web ページから必要な情報を取得してください。"

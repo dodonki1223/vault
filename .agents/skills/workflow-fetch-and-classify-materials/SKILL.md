@@ -1,6 +1,6 @@
 ---
 name: workflow-fetch-and-classify-materials
-description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets などから必要な情報を集め、fetch 系 skill を組み合わせて取得結果を分類し、後続の更新や判断に渡しやすい形へ整理する workflow skill。Project 更新前の材料集め、単発調査、issue に限らない文脈収集を依頼されたときに使う。
+description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets、一般的な Web ページなどから必要な情報を集め、fetch 系 skill を組み合わせて取得結果を分類し、後続の更新や判断に渡しやすい形へ整理する workflow skill。Project 更新前の材料集め、単発調査、issue に限らない文脈収集を依頼されたときに使う。
 ---
 
 # 情報取得と分類 workflow
@@ -30,6 +30,7 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
 - `fetch-github-materials`: GitHub から指定対象の情報を取得する。
 - `fetch-google-meet-materials`: Google Meet の MTG メモや関連 Docs / Drive 情報を取得する。
 - `fetch-google-sheets-materials`: Google Sheets から指定対象の情報を取得する。
+- `fetch-web-materials`: 特定サービスの connector に依存しない、一般的な Web ページ・ブログ・ニュース・公式ドキュメントから情報を取得する。GitHub / Notion / Linear など専用 skill がある対象には使わない。
 - `classify-fetched-materials`: 取得済み情報を事実、決定事項、推測、重要リンク、未解決事項、次アクション、ユーザー対応待ちに分類する。
 
 ## 参照する reference
@@ -56,6 +57,7 @@ description: Slack、Linear、Notion、GitHub、Google Meet、Google Sheets な�
      - 実装や CI なら GitHub
      - MTG 由来の決定確認なら Google Meet
      - 数表や設定値なら Google Sheets
+     - 特定サービスに紐づかない一般的な Web ページ・ブログ・ニュース・公式ドキュメントなら Web
 
 3. 情報源ごとの取得条件を揃える。
    - `.agents/references/subagent-fetch-contract.md` に従い、各 fetch 系 skill へ渡す入力をそろえる。

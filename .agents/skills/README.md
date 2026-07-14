@@ -29,6 +29,7 @@ skill は discovery のため flat layout にする。物理 directory では分
 - `fetch-github-materials`: GitHub から指定対象の情報を取得する。
 - `fetch-google-meet-materials`: Google Meet の MTG メモや関連 Docs / Drive 情報を取得する。
 - `fetch-google-sheets-materials`: Google Sheets の spreadsheet、sheet、range から指定対象の情報を取得する。
+- `fetch-web-materials`: 特定サービスの connector に依存しない、一般的な Web ページ・ブログ・ニュース・公式ドキュメントから情報を取得する。
 
 ### classify
 

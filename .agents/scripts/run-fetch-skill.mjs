@@ -9,6 +9,7 @@ const allowedSkills = new Set([
   "fetch-github-materials",
   "fetch-google-meet-materials",
   "fetch-google-sheets-materials",
+  "fetch-web-materials",
 ]);
 
 function usage() {
