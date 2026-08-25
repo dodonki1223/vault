@@ -20,7 +20,6 @@
 | 未着手 | 高 | [入力情報から必要タスクを分解する skill](tasks/decompose-task-from-materials.md) | 完了条件と関連情報から、実装時に読める粒度のタスク一覧を作る。 |
 | 未着手 | 高 | [Project リスク判定 skill](tasks/assess-project-risks.md) | 標準リスクモデルを参考に Project のリスクを構造的に判定する。 |
 | 未着手 | 高 | [Project の透明性・検査・適応 skill](tasks/project-transparency-inspection-adaptation.md) | issue 一覧や Timeline document から Project が透明性・検査・適応を回せる状態か確認する。 |
-| 未着手 | 中 | [MCP / connector 認証チェック harness の multi-agent 対応](tasks/mcp-connector-auth-harness-multi-agent.md) | Codex 専用の MCP 確認 script を Claude Code も考慮した harness に拡張する。 |
 | 未着手 | 中 | [script による体裁チェックの仕組み](tasks/script-based-format-checks.md) | skill や workflow skill の体裁を script で継続的に確認できるようにする。 |
 | 未着手 | 中 | [skill のカテゴリ管理](tasks/skill-category-management.md) | flat layout のままカテゴリ別に skill を見つけやすくする。 |
 | 未着手 | 中 | [skill の enable / invocation policy 管理](tasks/skill-invocation-policy.md) | skill ごとの自動起動・明示起動・無効化の推奨状態を管理する。 |
