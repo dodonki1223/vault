@@ -42,6 +42,8 @@ pnpm usage:daily:claude
 
 ```bash
 pnpm check:mcp
+pnpm check:mcp:codex
+pnpm check:mcp:claude
 pnpm agent:profile -- --agent codex fetch-light "prompt"
 pnpm agent:profile -- --agent claude fetch-light "prompt"
 pnpm fetch:materials -- --agent codex --skill fetch-slack-materials --profile fetch-light "依頼内容"
@@ -61,7 +63,7 @@ pnpm notify:slack:claude-code -- "通知本文"
 pnpm save:commit
 ```
 
-`check:mcp` は Codex CLI に設定された MCP の状態を確認する。対象を絞る場合は `pnpm check:mcp -- linear notion` のように指定する。
+`check:mcp` は Codex / Claude Code 両方に設定された MCP の状態を確認する（`codex mcp list` / `claude mcp list` をそれぞれ実行）。`check:mcp:codex` / `check:mcp:claude` で agent を1つに絞れる。対象 MCP 名を絞る場合は `pnpm check:mcp:codex -- linear notion` のように指定する。agent ごとに MCP の表示名が異なることがあるため（例: Codex は `linear`、Claude Code は `claude.ai Linear`）、`check:mcp`（全 agent 一括）で名前フィルタを使う場合は agent ごとの実際の表示名を先に確認しておく。Claude Code の `claude mcp list` は接続確認（live health check）まで行うが、Codex の `codex mcp list` は静的な設定表示のみで、OAuth の実有効性は各 skill の read-only probe で確認する。Slack の generic MCP 登録が使えない事情など既知の制約は `.agents/references/mcp-connector-notes.md` を参照。
 
 `agent:profile` は、repository 管理の推奨 model profile を読んで Codex または Claude を起動する。profile 定義は `.agents/model-profiles/` に置く。`codex:fetch-light` / `codex:fetch-standard` / `claude:fetch-light` / `claude:fetch-standard` はその薄い alias。必要なら `pnpm codex:profile -- --model ... --reasoning ... <profile-name> "prompt"` や `pnpm claude:profile -- --model ... --effort ... <profile-name> "prompt"` で local override できる。fetch 系の低コスト実行を固定したいときは、この wrapper を使う。
 

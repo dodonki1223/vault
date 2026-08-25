@@ -17,7 +17,7 @@ skill は discovery のため flat layout にする。物理 directory では分
 
 単一責任の部品。workflow skill やユーザー依頼から直接使う。
 
-外部 connector / MCP が必要な skill で認証状態が不明な場合は、必要に応じて `pnpm check:mcp -- <name>` を使って設定状態を確認する。OAuth の実有効性は `codex mcp list` だけでは確定できないため、最終的には各 skill の read-only probe で確認する。
+外部 connector / MCP が必要な skill で認証状態が不明な場合は、必要に応じて `pnpm check:mcp:codex -- <name>` / `pnpm check:mcp:claude -- <name>`（両方見るなら `pnpm check:mcp -- <name>`）を使って設定状態を確認する。Codex / Claude Code どちらの agent でも動く（`.agents/scripts/check-mcp-auth.mjs` が provider adapter 方式で両方に対応）。OAuth の実有効性は `codex mcp list` だけでは確定できないため、最終的には各 skill の read-only probe で確認する（`claude mcp list` は接続確認まで行うため、Claude Code 側は `ok` / `ng` が直接分かることが多い）。
 
 ### fetch
 

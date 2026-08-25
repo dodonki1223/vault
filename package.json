@@ -3,7 +3,9 @@
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "scripts": {
-    "check:mcp": "node .agents/scripts/check-mcp-auth.mjs",
+    "check:mcp": "node .agents/scripts/check-mcp-auth.mjs --agent all",
+    "check:mcp:codex": "node .agents/scripts/check-mcp-auth.mjs --agent codex",
+    "check:mcp:claude": "node .agents/scripts/check-mcp-auth.mjs --agent claude",
     "agent:profile": "node .agents/scripts/run-agent-profile.mjs",
     "fetch:materials": "node .agents/scripts/run-fetch-skill.mjs",
     "codex:profile": "node .agents/scripts/run-agent-profile.mjs --agent codex",
