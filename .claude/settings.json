@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Grep",
+      "Glob",
+      "WebFetch",
+      "Edit(**)",
+      "Write(**)",
+      "NotebookEdit(**)",
+      "Bash(pnpm check:mcp*)",
+      "Bash(pnpm usage:*)",
+      "Bash(system_profiler *)",
+      "Bash(claude mcp list)",
+      "Bash(pnpm validate:fetch-skills)"
+    ]
+  }
+}
