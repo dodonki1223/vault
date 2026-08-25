@@ -52,6 +52,7 @@ skill は discovery のため flat layout にする。物理 directory では分
 
 - `review-project-status`: Project `status.md` 更新後に品質レビューを行う。
 - `review-linear-structure`: Linear の Project、milestone、issue が Linear Method に沿っているかレビューする。
+- `review-linear-issue-completion`: 実装完了後の Linear issue が、完了条件を実際に満たしているかレビューする。
 
 ### utility
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Issue 完了条件レビュー"
+  short_description: "実装後に Linear issue の完了条件充足を確認"
+  default_prompt: "$review-linear-issue-completion を使って、この Linear issue の完了条件を実装内容が満たしているか確認してください。"
