@@ -12,6 +12,7 @@ skill は discovery のため flat layout にする。物理 directory では分
 - `workflow-update-project-note`: 既存 Project note の状況確認、情報取得、分類、`status.md` 更新、更新後レビューを進行する。
 - `workflow-update-linear-project-timeline`: Linear Project に紐づく情報から、後から参画する人向けの時系列 document を作成・更新する。
 - `workflow-write-and-review-linear`: Linear への書き込み draft、実行、Linear Method に沿ったレビューを進行する。
+- `workflow-create-business-definition-sheet`: 外部システム上の資料を fetch 系 skill で取得し、`create-business-definition-sheet` に渡して業務定義シートを作成する。
 
 ## Capability skills
 
@@ -63,5 +64,6 @@ repository の運用補助や local tool を扱う skill。
 vault の構造や Project note を扱う skill。
 
 - `create-project-note`: 新しい Project note を `projects/active/` に作成する。
+- `create-business-definition-sheet`: 『業務設計の教科書』WORKING 1 の業務定義シートを 1 業務 1 シートで作成する。
 - `manage-vault-improvements`: `improvements/` の改善 backlog と task file を管理する。
 - `vault-git-commit`: vault repository の変更を安全に確認して commit する。

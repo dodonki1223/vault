@@ -1,0 +1,4 @@
+interface:
+  display_name: "業務定義シート作成"
+  short_description: "業務定義シートをインタビューして作成"
+  default_prompt: "$create-business-definition-sheet を使って、業務定義シートを作成してください。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "業務定義シート作成(外部資料から)"
+  short_description: "外部資料を取得して業務定義シートを作成"
+  default_prompt: "$workflow-create-business-definition-sheet を使って、指定した資料から業務定義シートを作成してください。"
