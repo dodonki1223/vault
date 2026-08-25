@@ -10,6 +10,26 @@
 
 ---
 
+## codex chief of staff
+
+- https://gist.github.com/jxnl/e96b08aae7d01abf99b99f4b1ea9a321
+- jxnl / 2026-04-16
+- エージェントを「作業記憶を持つ chief of staff」として立ち上げる手順書
+
+**なぜ良かったか**: この vault の `AGENTS.md` はこの gist を下敷きにしている。運用に迷ったときの原典として、なぜこの構造にしたのかを確認できる。
+
+**要点**
+
+- 目指すのはチャットボットではなく、**仕事環境を監視し、文脈を保持し、必要なときだけ割り込む**アシスタント。
+- 立ち上げは 11 段階。短いインタビュー → `~/vault/{projects,notes}` の作成 → `AGENTS.md` にルールを明文化 → 監視対象の特定 → plugin 選定 → 定期実行 → 通知ポリシー、という順で組む。
+- **「The vault is just the durable memory layer」** — vault 自体は永続メモリ層でしかなく、価値は運用ルール側にある。
+- plugin は名前ではなく **capability で考える**（"Think in capabilities, not plugin names"）。実際に価値が出るものだけ入れる。
+- 通知は本当に重要なものだけ。**「If nothing meaningful changed, stay quiet」**、古い status を再通知しない。
+- 繰り返し発生するパターンを見つけたらエージェント側から改善を提案する「自己提案契約」を持たせる。
+- 全体を貫くのは **「Do not make it complicated」**。派手な自動化ではなく、意思決定を支える軽量な仕組みに寄せる。
+
+---
+
 ## 「モデルが20％良くなったら、Harveyは60％」 その成長の裏には弁護士集団「リーガルエンジニア」がいた
 
 - https://blog.allstarsaas.com/posts/harvey-grow-people
