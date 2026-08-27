@@ -12,7 +12,44 @@
       "Bash(pnpm usage:*)",
       "Bash(system_profiler *)",
       "Bash(claude mcp list)",
-      "Bash(pnpm validate:fetch-skills)"
+      "Bash(pnpm validate:fetch-skills)",
+
+      "mcp__claude_ai_Linear",
+      "mcp__claude_ai_Notion",
+      "mcp__claude_ai_Slack",
+      "mcp__claude_ai_Google_Drive",
+      "mcp__claude_ai_Google_Calendar",
+
+      "Bash(gh auth status)",
+      "Bash(gh api *)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)",
+      "Bash(gh search *)",
+      "Bash(gh run view *)",
+      "Bash(gh run list *)",
+
+      "Bash(git status*)",
+      "Bash(git log *)",
+      "Bash(git diff*)",
+      "Bash(git show *)"
+    ],
+    "ask": [
+      "mcp__claude_ai_Linear__delete_comment",
+      "mcp__claude_ai_Linear__delete_attachment",
+      "mcp__claude_ai_Linear__delete_customer",
+      "mcp__claude_ai_Linear__delete_customer_need",
+      "mcp__claude_ai_Linear__delete_status_update",
+      "mcp__claude_ai_Linear__delete_diff_comment",
+      "mcp__claude_ai_Linear__merge_diff",
+      "mcp__claude_ai_Slack__slack_send_message",
+      "mcp__claude_ai_Slack__slack_send_message_draft",
+      "mcp__claude_ai_Slack__slack_schedule_message",
+      "mcp__claude_ai_Google_Drive__trash_file",
+      "mcp__claude_ai_Google_Drive__share_file",
+      "mcp__claude_ai_Google_Calendar__delete_event"
     ]
   }
 }
