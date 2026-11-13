@@ -10,6 +10,115 @@
 
 ---
 
+## 気になる記事
+
+### サブエージェントでコードを調査し、改善アドバイスをまとめる
+
+- [Claude Code: カスタムサブエージェントの作成・コードレビューの例](https://code.claude.com/docs/en/sub-agents)
+- [OpenAI: Codex のサブエージェントによる並列調査・レビュー](https://learn.chatgpt.com/docs/agent-configuration/subagents)
+- Anthropic / OpenAI 公式ドキュメント / 2026-11-12 追加
+- 別々のコンテキストでコードを調査し、結果の要約を親エージェントに返す仕組み。繰り返し使うレビュー観点は専用エージェントとして定義できる。
+- 使い方の案: 対象機能を絞り、「設計・保守性」「不具合・データ整合性」「性能・テスト」の3観点に分担する。親が根拠をコードで確認し、重複を除いて重要な提案をまとめる。
+- 依頼時は、コード変更の可否と、該当ファイル・問題が起きる条件・影響・改善案を返すことを指定する。確認できた問題と設計上の提案を分ける。
+- 各エージェントが個別に調査するため、使用量も増える。小さな対象は単独調査から始める。
+
+### Which Claude model should you build with? Fable, Opus, Sonnet, or Haiku
+
+- [Which Claude model should you build with? Fable, Opus, Sonnet, or Haiku](https://claude.dev/blog/which-claude-model-should-you-build-with/)
+- Addy Osmani / claude.dev / 2026-11-09 公開 / 2026-11-12 追加
+- Claude のモデルと推論の強度（effort）を、作業の難しさ・待ち時間・完了までの費用で選ぶための記事。
+- 記事の推奨: 通常は Opus 5.5 の `medium` を起点にし、範囲が明確な作業は Sonnet 5.5、単純な大量処理は Haiku 5.5、難しい技術課題は Fable 5.2 を検討する。
+- 精度が足りなければ、まずテストなどで自己検証できるようにし、次に effort を上げ、さらに必要なら上位モデルを低めの effort から試す。
+- 小さいモデルには検証しやすい補助作業を任せる。モデル切り替え時はキャッシュと推論履歴の互換性を確認し、実際の仕事で品質と完了タスク当たりの費用を比較する。
+- モデル名・推奨設定は記事公開時点の記載。
+
+### 国内で相次ぐ不正アクセスに対する注意喚起についてまとめてみた
+
+- [国内で相次ぐ不正アクセスに対する注意喚起についてまとめてみた](https://piyolog.hatenadiary.jp/entry/2026/10/11/004353)
+- piyokango / piyolog / 2026-10-11 公開 / 2026-10-13 追加
+- 状態: 未読・あとで読む
+- 国内の不正アクセス・情報漏えいを受けた各機関の注意喚起と、API悪用などの攻撃類型を整理した記事。
+
+### Harness engineering for coding agent users
+
+- [Harness engineering for coding agent users](https://martinfowler.com/articles/harness-engineering.html)
+- Birgitta Böckeler / martinfowler.com / 2026-10-13 追加
+- 状態: 未読・あとで読む
+- コーディングエージェントを支えるガイドと検証・フィードバックの設計を整理する記事。
+
+### ハーネスエンジニアリング：エージェントファーストの世界における Codex の活用
+
+- [ハーネスエンジニアリング：エージェントファーストの世界における Codex の活用](https://openai.com/ja-JP/index/harness-engineering/)
+- OpenAI / 2026-10-13 追加
+- 状態: 未読・あとで読む
+- Codex を前提にした開発で、エージェントが働く環境をどう設計するかを扱う実践記事。
+
+### Effective context engineering for AI agents
+
+- [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)
+- Anthropic / 2026-10-13 追加
+- 状態: 未読・あとで読む
+- AI エージェントに渡すコンテキストの選択・管理を扱う記事。
+
+### Effective harnesses for long-running agents
+
+- [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+- Anthropic / 2026-10-13 追加
+- 状態: 未読・あとで読む
+- 長時間・複数セッションにまたがるエージェント作業を支える仕組みを扱う記事。
+
+### How we contain Claude across products
+
+- [How we contain Claude across products](https://www.anthropic.com/engineering/how-we-contain-claude)
+- Anthropic / 2026-10-13 追加
+- 状態: 未読・あとで読む
+- 各製品で Claude の動作範囲を制限する仕組みを扱う記事。
+
+### The lethal trifecta for AI agents: private data, untrusted content, and external communication
+
+- [The lethal trifecta for AI agents: private data, untrusted content, and external communication](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/)
+- Simon Willison / 2026-10-13 追加
+- 状態: 未読・あとで読む
+- 機密データへのアクセス、信頼できないコンテンツ、外部通信が組み合わさる際のエージェントのリスクを扱う記事。
+
+### Harness Engineering for AI Coding Agents: Constraints That Ship Reliable Code
+
+- [Harness Engineering for AI Coding Agents: Constraints That Ship Reliable Code](https://www.augmentcode.com/guides/harness-engineering-ai-coding-agents)
+- Augment Code / 2026-10-13 追加
+- 状態: 未読・あとで読む
+- AI コーディングエージェントの出力を安定させる制約とハーネス設計のガイド。
+
+### Language Models for Text Classification: From Bag-of-Words to Jev
+
+- [Language Models for Text Classification: From Bag-of-Words to Jev](https://magazine.sebastianraschka.com/p/classifier-history-and-jev)
+- Sebastian Raschka / 2026-09-29 公開 / 2026-10-09 追加
+- 状態: 未読・あとで読む
+- テキスト分類の歴史を Bag-of-Words、RNN、CNN、Transformer から Jev まで図解する記事。分類モデルの使い分けと確率の較正も扱う。
+
+---
+
+## What Elite Engineering Teams Do Differently in the Age of AI
+
+- https://newsletter.eng-leadership.com/p/what-elite-engineering-teams-do-differently
+- Gregor Ojstersek / Engineering Leadership newsletter / 2026-09-03
+- OpenAI、Anthropic、Shutterstock、Weave の Engineering Leader に、平均的なチームと優れたチームを分けるものを聞いた記事
+- 日本語での紹介: [TAKAKING22 の投稿（記事の Inner Loop / Outer Loop の整理）](https://x.com/TAKAKING22/status/2095659809593053303)
+
+**なぜ良かったか**: AI 時代の差を、コードを速く書く能力ではなく、ユーザーから学んで成果へ近づく「outer loop」の速さとして捉えている。言い換えると、差がつくのは「どれだけ速く作れるか」ではなく **「どれだけ速く学べるか」**。チームの North Star と短期の測定可能な仕事をどう両立させるか、という組織運営の観点も実用的。
+
+**要点**（本文は有料購読者限定。以下は公開部分で確認できた範囲）
+
+- 平均的なチームは、コードの作成・出荷を速める **inner loop** に集中しやすい。優れたチームはそれに加えて、実際のユーザーフィードバックを集め、学び、プロダクトを反復する **outer loop** も最適化する。
+- AI によって inner loop が高速化・コモディティ化するほど、**Build → Feedback → Learning → Improvement** という outer loop を短くする能力がチームの競争力になる。
+- 重要なのはコード量ではなく、ユーザー利用やエンゲージメントなどの成果。Codex のようなツールをテストと反復にも組み込み、開発とユーザー成果の距離を縮める。
+- チームが優れているかを見るシグナルは、長期的な **North Star が明確か**、そこへ到達できているか、進捗を測る具体的な指標があるか。
+- 長期化しやすいインフラ仕事は、小さく管理可能な成果へ分解すると進捗が見えやすくなる。
+- 短期的に仕事が集中しても、長期目標を見失わず、担当を絞り、予定変更を明確に伝えながら対処できることが強いチームの特徴。
+
+> Anthropic におけるチームの野心、在籍期間とコミットメント、組織のフラットさや投資対価についての節は有料部分のため、内容は未確認。
+
+---
+
 ## 採用面接で「AI使ってます！」って言うエンジニアに対してするべき質問10選
 
 - https://x.com/voidwarriorchan/status/2089094496663535618
