@@ -34,7 +34,12 @@
       "Bash(git status*)",
       "Bash(git log *)",
       "Bash(git diff*)",
-      "Bash(git show *)"
+      "Bash(git show *)",
+      "Bash(git fetch *)",
+      "Bash(git rev-list *)",
+      "Bash(git merge-base *)",
+      "Bash(git check-ignore *)",
+      "Bash(git worktree list)"
     ],
     "ask": [
       "mcp__claude_ai_Linear__delete_comment",
