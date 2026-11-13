@@ -18,3 +18,6 @@ notes/local/*
 node_modules/
 npm-debug.log*
 pnpm-debug.log*
+
+# macOS Finder metadata.
+.DS_Store
