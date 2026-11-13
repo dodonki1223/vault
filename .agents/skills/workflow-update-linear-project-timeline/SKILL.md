@@ -19,7 +19,7 @@ Linear Project に紐づく issue、milestone、document、MTG メモ、Slack th
 - Linear Method 的に、Project description は目標、scope、milestone、依存関係を置く場所として扱う。
 - 時系列は Linear Project に紐づく document として扱う。
 - document の作成・更新は Linear への書き込みなので、必ず draft を提示してユーザー確認を取る。
-- Linear の取得・書き込みで認証エラーが出た場合は、代替の Linear tool やコメント追記で処理を続けない。まず認証エラーを報告し、ユーザーに再認証を依頼してから再試行する。
+- Linear の取得・書き込みで認証エラーが出た場合は、[Linear OAuth 再認証フロー](../../references/linear-oauth-authentication.md) に従う。エージェント側で OAuth を開始してブラウザに認可画面を開き、認証後に元の処理を再開する。
 
 ## 入力
 
@@ -48,7 +48,7 @@ Linear Project に紐づく issue、milestone、document、MTG メモ、Slack th
 
 2. 既存情報を取得する。
    - `fetch-linear-materials` で Linear Project、milestone、代表 issue、linked resource、既存 document の有無を確認する。
-   - Linear 側で `401: Reauthentication required`、`Unauthorized`、`Authentication required`、`oauth_token_invalid_grant` などが返った場合はここで止める。document 本文が取得できない状態で、コメント追記や別 tool による部分更新へ進まない。
+   - Linear 側で認証エラーが返った場合は、部分更新へ進まず [Linear OAuth 再認証フロー](../../references/linear-oauth-authentication.md) を実施する。認証後、同じ取得から再開する。
    - 既存の時系列 document がある場合は、現在地、最後の時系列日付、参照リンクを確認する。
    - 更新時は、既存 document の `現在地` や milestone 状況を正として扱わない。Linear 上の最新 Project / milestone / issue 状態を正として照合する。
    - milestone については、名前、順番、target date、progress、追加 / 改名 / 削除、後続 milestone との依存関係変更を確認する。

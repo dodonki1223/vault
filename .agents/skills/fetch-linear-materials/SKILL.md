@@ -26,16 +26,14 @@ description: Linear から指定された対象に関する情報だけを取得
 
 Linear tools / MCP が見つからない、認証エラー、権限不足、対象不明で取得できない、または Linear connector の状態が不明な場合は、取得を広げる前に次を行う。
 
-1. まず tool discovery で Linear tools を探す。Python、Node、CLI など特定のローカル runtime には依存しない。
+1. tool discovery で直接 MCP の Linear tools（`mcp__linear__*`）を探し、hosted plugin より優先する。
 2. Linear tools が見つからない場合だけ、`~/.codex/config.toml` の `mcp_servers.linear` 設定を確認できる範囲で見る。token、OAuth secret、cookie は探さない。
-3. Linear MCP が設定済みの場合は、必要最小の read-only probe で OAuth 状態を確認する。認証エラーなら追加取得を止め、ユーザーへ再認証を依頼する。
-4. Linear MCP が未設定の場合は、Linear の公式 MCP endpoint を Codex に登録する手順として、`codex mcp add linear --url https://mcp.linear.app/mcp` を案内する。`codex` が PATH にない環境では `/Applications/Codex.app/Contents/Resources/codex mcp add linear --url https://mcp.linear.app/mcp` を案内する。
-5. `401: Reauthentication required`、`Unauthorized`、`Authentication required`、`oauth_token_invalid_grant` などが返った場合は、`codex mcp login linear` を再実行してから同じ対象を再取得するよう案内する。`codex` が PATH にない環境では `/Applications/Codex.app/Contents/Resources/codex mcp login linear` を案内する。
+3. 必要最小の read-only probe で実際の OAuth 状態を確認する。画面上の ON 表示や `codex mcp list` の Auth 表示だけで判断しない。
+4. 認証エラーの場合は [Linear OAuth 再認証フロー](../../references/linear-oauth-authentication.md) に従い、エージェント側で OAuth を開始してブラウザに認可画面を開く。ユーザーには `Authorize` / `Allow` の操作だけを依頼する。
+5. 認証成功後は同じ対象を再取得し、元の取得作業を自動的に続ける。
 6. issue、team、project、view が見えない場合は、ユーザー本人の Linear workspace、team 権限、issue / project の閲覧権限が合っているかを確認事項として返す。
 
-Linear の一部 tool / MCP で認証エラーが出た場合、別の Linear tool やコメント書き込みで代替取得・代替更新を続けない。まず認証エラーを報告し、ユーザーが再認証してから同じ対象を再試行する。
-
-OAuth のブラウザ承認はユーザー本人の操作として残す。skill は token、OAuth code、API key を受け取らない・保存しない。非対話化が必要な場合だけ、ユーザーが安全に管理する環境変数を使った bearer token 設定を別途検討し、secret の値は note や skill に書かない。
+OAuth code、token、API key、cookie は受け取らない・保存しない。認証フロー自体が失敗した場合だけ、追加取得を止めて次の対応を返す。
 
 ## 取得できなかった場合の返答
 

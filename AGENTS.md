@@ -27,6 +27,13 @@ agent 共通の skill / workflow / command は `.agents/` を正とする。Code
 - ログや一覧のコピーではなく、後で使う判断材料だけを短く残す。
 - Notion、Linear、Slack、Docs、Drive、共有 note など外部サービスへの新規作成・更新は、ユーザーが明確に即時実行を依頼している場合はドラフト確認を挟まず実行する。依頼が「確認」「レビュー」「案を作る」にとどまる場合は、書き込みをせず結果を報告する。
 
+## Linear 接続
+
+- Linear の読み取り・書き込みでは、ローカルに登録した直接 MCP（`mcp__linear__*`、server name: `linear`）を、hosted plugin（`mcp__codex_apps__linear_*`）より優先する。両者の OAuth 接続は別物として扱う。
+- 接続確認は対象 issue への read-only リクエストで行う。画面上の ON 表示や `codex mcp list` の Auth 表示だけで認証状態を判断しない。
+- 直接 MCP が認証切れの場合は、[Linear OAuth 再認証フロー](.agents/references/linear-oauth-authentication.md) に従う。エージェント側で `codex mcp login linear` を開始し、出力された認可画面をブラウザで開き、ユーザーには `Authorize` / `Allow` の操作だけを促す。認証成功後は同じ read-only リクエストを再試行し、元の作業を続ける。
+- hosted plugin だけが `This app connection requires reauthentication` を返し、直接 MCP が利用可能な場合は、認証済みの直接 MCP を利用する。
+
 ## Chief of Staff としてのふるまい
 
 エージェントは、この vault を永続的な作業記憶として使う小さな chief of staff としてふるまう。接続済みの作業場所を読み、プロジェクトノートを最新に保ち、必要なときだけ割り込む。
